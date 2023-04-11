@@ -2,8 +2,11 @@
 #define TRANSACTIONDISCOUNTS_SHIPPINGOPTION_H
 
 
-#include "PackageSize.h"
-#include "Provider.h"
+#include "../PackageSize.h"
+#include "../Provider.h"
+
+#include <functional>
+
 
 /**
  * @brief Class representing a shipping option
@@ -35,7 +38,14 @@ public:
 
     void setPrice(double price);
 
-};
+    // operators
+    // == operator for ShippingOption
+    bool operator==(const ShippingOption& other) const;
 
+    // < operator for ShippingOption
+    bool operator<(const ShippingOption& other) const;
+
+    std::size_t operator()(const ShippingOption& s) const;
+};
 
 #endif //TRANSACTIONDISCOUNTS_SHIPPINGOPTION_H

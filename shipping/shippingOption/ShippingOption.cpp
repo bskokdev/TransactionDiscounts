@@ -26,3 +26,22 @@ double ShippingOption::getPrice() const {
 void ShippingOption::setPrice(double price) {
     ShippingOption::price = price;
 }
+
+bool ShippingOption::operator==(const ShippingOption &other) const {
+    return provider == other.provider &&
+           size == other.size &&
+           price == other.price;
+}
+
+bool ShippingOption::operator<(const ShippingOption &other) const {
+    if (provider < other.provider) {
+        return true;
+    } else if (provider == other.provider) {
+        if (size < other.size) {
+            return true;
+        } else if (size == other.size) {
+            return price < other.price;
+        }
+    }
+    return false;
+}
