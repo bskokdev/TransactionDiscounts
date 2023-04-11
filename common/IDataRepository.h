@@ -11,6 +11,7 @@ public:
     virtual void add(const T& item) = 0;
     virtual void remove(const T& item) = 0;
     virtual void update(const T& item) = 0;
+    virtual std::vector<T> getAll() = 0;
 };
 
 

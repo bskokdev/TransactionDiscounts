@@ -29,3 +29,11 @@ void ShippingOptionRepository::update(const ShippingOption &shippingOption) {
         this->shippingOptions.insert(shippingOption);
     }
 }
+
+std::vector<ShippingOption> ShippingOptionRepository::getAll() {
+    std::vector<ShippingOption> shippingOptionsAsVector;
+
+    // copy the set to a vector
+    std::copy(shippingOptions.begin(), this->shippingOptions.end(), std::back_inserter(shippingOptionsAsVector));
+    return shippingOptionsAsVector;
+}

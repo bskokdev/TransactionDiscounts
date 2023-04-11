@@ -2,6 +2,7 @@
 #define TRANSACTIONDISCOUNTS_SHIPPINGOPTIONREPOSITORY_H
 
 #include <unordered_set>
+#include <stdexcept>
 #include "ShippingOption.h"
 #include "../../common/IDataRepository.h"
 #include "ShippingOptionHash.h"
@@ -27,6 +28,7 @@ public:
     void add(const ShippingOption& shippingOption) override;
     void remove(const ShippingOption& shippingOption) override;
     void update(const ShippingOption& shippingOption) override;
+    std::vector<ShippingOption> getAll() override;
 };
 
 
