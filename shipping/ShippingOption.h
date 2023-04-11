@@ -6,7 +6,7 @@
 #include "Provider.h"
 
 /**
- * @details Represents a shipping option
+ * @brief Class representing a shipping option
  */
 class ShippingOption {
 private:
