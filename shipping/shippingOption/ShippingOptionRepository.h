@@ -14,7 +14,11 @@ class ShippingOptionRepository : public IDataRepository<ShippingOption> {
 private:
     std::unordered_set<ShippingOption, ShippingOptionHash> shippingOptions;
     ShippingOptionRepository();
-    ~ShippingOptionRepository();
+    ~ShippingOptionRepository() override = default;
+
+    // delete copy constructor and assignment operator
+    ShippingOptionRepository(const ShippingOptionRepository&) = delete;
+    ShippingOptionRepository& operator=(const ShippingOptionRepository&) = delete;
 public:
     static ShippingOptionRepository &getInstance();
 
