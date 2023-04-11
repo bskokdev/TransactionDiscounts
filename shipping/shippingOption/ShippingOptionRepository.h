@@ -13,7 +13,7 @@
  */
 class ShippingOptionRepository : public IDataRepository<ShippingOption> {
 private:
-    std::unordered_set<ShippingOption, ShippingOptionHash> shippingOptions;
+    std::vector<ShippingOption> shippingOptions;
     ShippingOptionRepository();
     ~ShippingOptionRepository() override = default;
 

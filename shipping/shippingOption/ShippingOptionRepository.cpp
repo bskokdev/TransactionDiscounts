@@ -8,32 +8,38 @@ ShippingOptionRepository &ShippingOptionRepository::getInstance() {
 }
 
 bool ShippingOptionRepository::exists(const ShippingOption &shippingOption) {
-    return this->shippingOptions.count(shippingOption);
+    for(auto& option : this->shippingOptions) {
+        if(option == shippingOption) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void ShippingOptionRepository::add(const ShippingOption &shippingOption) {
     // set does not allow duplicates -> no need to check if exists
-    this->shippingOptions.insert(shippingOption);
+    this->shippingOptions.push_back(shippingOption);
 }
 
 void ShippingOptionRepository::remove(const ShippingOption &shippingOption) {
     if(this->exists(shippingOption)) {
-        this->shippingOptions.erase(shippingOption);
+        // find the shipping option and remove it using the iterator
+        auto it = std::find(this->shippingOptions.begin(), this->shippingOptions.end(), shippingOption);
+        this->shippingOptions.erase(it);
     }
 }
 
 void ShippingOptionRepository::update(const ShippingOption &shippingOption) {
-    // replace the old shipping option with the new one
+    // find the shipping option and overwrite it
     if(this->exists(shippingOption)) {
-        this->shippingOptions.erase(shippingOption);
-        this->shippingOptions.insert(shippingOption);
+        for(auto& option : this->shippingOptions) {
+            if(option == shippingOption) {
+                option = shippingOption;
+            }
+        }
     }
 }
 
 std::vector<ShippingOption> ShippingOptionRepository::getAll() {
-    std::vector<ShippingOption> shippingOptionsAsVector;
-
-    // copy the set to a vector
-    std::copy(shippingOptions.begin(), this->shippingOptions.end(), std::back_inserter(shippingOptionsAsVector));
-    return shippingOptionsAsVector;
+    return this->shippingOptions;
 }
