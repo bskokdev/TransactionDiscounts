@@ -44,8 +44,6 @@ public:
 
     // < operator for ShippingOption
     bool operator<(const ShippingOption& other) const;
-
-    std::size_t operator()(const ShippingOption& s) const;
 };
 
 #endif //TRANSACTIONDISCOUNTS_SHIPPINGOPTION_H
