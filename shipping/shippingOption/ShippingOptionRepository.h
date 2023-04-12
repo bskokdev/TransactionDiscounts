@@ -14,14 +14,9 @@
 class ShippingOptionRepository : public IDataRepository<ShippingOption> {
 private:
     std::vector<ShippingOption> shippingOptions;
-    ShippingOptionRepository();
-    ~ShippingOptionRepository() override = default;
-
-    // delete copy constructor and assignment operator
-    ShippingOptionRepository(const ShippingOptionRepository&) = delete;
-    ShippingOptionRepository& operator=(const ShippingOptionRepository&) = delete;
 public:
-    static ShippingOptionRepository &getInstance();
+    // constructor
+    ShippingOptionRepository();
 
     // IDataRepository methods
     bool exists(const ShippingOption& shippingOption) override;

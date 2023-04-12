@@ -7,20 +7,12 @@
 
 /**
  * @brief Class for printing transactions
- * @details Implements IPrinter interface and is a singleton
+ * @details Implements IPrinter interface
  */
 class TransactionPrinter : public IPrinter<Transaction> {
-private:
-    // private constructor and destructor to prevent instantiation
-    TransactionPrinter() = default;
-    ~TransactionPrinter() = default;
-
-    static TransactionPrinter& instance;
-
-    // delete copy constructor and assignment operator
-    TransactionPrinter(const TransactionPrinter&) = delete;
-    TransactionPrinter& operator=(const TransactionPrinter&) = delete;
 public:
+    // constructor
+    TransactionPrinter();
     /**
      * @brief Get the instance of TransactionPrinter
      * @return TransactionPrinter reference

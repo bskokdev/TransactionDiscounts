@@ -2,11 +2,6 @@
 
 ShippingOptionRepository::ShippingOptionRepository() {}
 
-ShippingOptionRepository &ShippingOptionRepository::getInstance() {
-    static ShippingOptionRepository instance;
-    return instance;
-}
-
 bool ShippingOptionRepository::exists(const ShippingOption &shippingOption) {
     for(auto& option : this->shippingOptions) {
         if(option == shippingOption) {
