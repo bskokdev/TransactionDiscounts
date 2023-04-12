@@ -2,6 +2,9 @@
 #define TRANSACTIONDISCOUNTS_PACKAGESIZE_H
 
 
+/**
+ * @brief Enum for package sizes
+ */
 enum class PackageSize {
     S,
     M,

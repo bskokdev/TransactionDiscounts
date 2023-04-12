@@ -2,6 +2,9 @@
 #define TRANSACTIONDISCOUNTS_PROVIDER_H
 
 
+/**
+ * @brief Enum for provider types
+ */
 enum class Provider {
     LP,
     MR

@@ -2,6 +2,10 @@
 #define TRANSACTIONDISCOUNTS_IDATAREPOSITORY_H
 
 
+/**
+ * @brief Generic interface for data repositories
+ * @tparam T
+ */
 template<typename T>
 class IDataRepository {
 public:
