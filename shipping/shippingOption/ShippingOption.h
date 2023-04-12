@@ -46,6 +46,12 @@ public:
     // < operator for ShippingOption
     bool operator<(const ShippingOption& other) const;
 
+    /**
+     * @brief Overload of the << operator for ShippingOption
+     * @param os The output stream
+     * @param option The ShippingOption to be printed
+     * @return reference to the output stream
+     */
     friend std::ostream &operator<<(std::ostream &os, const ShippingOption &option);
 };
 
