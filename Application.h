@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include "io/Reader.h"
+#include "transaction/TransactionRepository.h"
 
 /**
  * @brief Class representing the application
@@ -16,6 +17,7 @@ class Application {
 private:
     TransactionPrinter& printer;
     ShippingOptionRepository& shippingRepo;
+    TransactionRepository& transactionRepo;
 public:
     /**
      * @brief Constructor with dependencies
@@ -23,7 +25,7 @@ public:
      * @param printer TransactionPrinter instance
      * @param shippingRepo ShippingOptionRepository instance
      */
-    Application(TransactionPrinter &printer, ShippingOptionRepository &shippingRepo);
+    Application(TransactionPrinter &printer, ShippingOptionRepository &shippingRepo, TransactionRepository &transactionRepo);
 
     /**
      * @brief Run the application

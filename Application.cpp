@@ -1,7 +1,9 @@
 #include "Application.h"
 
-Application::Application(TransactionPrinter &printer, ShippingOptionRepository &shippingRepo)
-        : printer(printer), shippingRepo(shippingRepo) {}
+Application::Application(TransactionPrinter &printer,
+                         ShippingOptionRepository &shippingRepo,
+                         TransactionRepository &transactionRepo)
+        : printer(printer), shippingRepo(shippingRepo), transactionRepo(transactionRepo) {}
 
 void Application::run() {
     initialize();
