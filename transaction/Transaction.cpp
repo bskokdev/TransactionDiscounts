@@ -37,3 +37,8 @@ bool Transaction::operator==(const Transaction &other) {
            date.getYear() == other.date.getYear() &&
            shippingOption == other.shippingOption;
 }
+
+std::ostream &operator<<(std::ostream &os, const Transaction &transaction) {
+    os << transaction.date << " " << transaction.shippingOption;
+    return os;
+}

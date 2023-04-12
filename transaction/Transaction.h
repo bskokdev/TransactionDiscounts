@@ -32,6 +32,13 @@ public:
     // operators
     bool operator<(const Transaction& other);
     bool operator==(const Transaction& other);
+    /**
+     * @brief Overload of the << operator for Transaction
+     * @param os output stream
+     * @param transaction Transaction to be printed
+     * @return reference to the output stream
+     */
+    friend std::ostream& operator<<(std::ostream& os, const Transaction& transaction);
 };
 
 
