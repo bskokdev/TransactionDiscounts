@@ -31,11 +31,14 @@ bool Transaction::operator<(const Transaction &other) {
     return shippingOption < other.shippingOption;
 }
 
-bool Transaction::operator==(const Transaction &other) {
+
+bool Transaction::operator==(const Transaction &other) const {
     return date.getDay() == other.date.getDay() &&
            date.getMonth() == other.date.getMonth() &&
            date.getYear() == other.date.getYear() &&
-           shippingOption == other.shippingOption;
+           shippingOption.getPrice() == other.shippingOption.getPrice() &&
+           shippingOption.getSize() == other.shippingOption.getSize() &&
+           shippingOption.getProvider() == other.shippingOption.getProvider();
 }
 
 std::ostream &operator<<(std::ostream &os, const Transaction &transaction) {

@@ -30,8 +30,8 @@ public:
     void setShippingOption(const ShippingOption &shippingOption);
 
     // operators
-    bool operator<(const Transaction& other);
-    bool operator==(const Transaction& other);
+    bool operator<(const Transaction& other) const;
+    bool operator==(const Transaction& other) const;
     /**
      * @brief Overload of the << operator for Transaction
      * @param os output stream
