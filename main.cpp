@@ -1,6 +1,10 @@
-#include <iostream>
+#include "Application.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    TransactionPrinter printer;
+    ShippingOptionRepository shippingRepo;
+
+    Application app(printer, shippingRepo);
+    app.run();
     return 0;
 }
