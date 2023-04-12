@@ -29,7 +29,9 @@ public:
 
     void setShippingOption(const ShippingOption &shippingOption);
 
-    // todo: implement following: ==, < operators, hash function
+    // operators
+    bool operator<(const Transaction& other);
+    bool operator==(const Transaction& other);
 };
 
 

@@ -17,3 +17,23 @@ const ShippingOption &Transaction::getShippingOption() const {
 void Transaction::setShippingOption(const ShippingOption &shippingOption) {
     Transaction::shippingOption = shippingOption;
 }
+
+bool Transaction::operator<(const Transaction &other) {
+    if (date.getYear() != other.date.getYear()) {
+        return date.getYear() < other.date.getYear();
+    }
+    if (date.getMonth() != other.date.getMonth()) {
+        return date.getMonth() < other.date.getMonth();
+    }
+    if (date.getDay() != other.date.getDay()) {
+        return date.getDay() < other.date.getDay();
+    }
+    return shippingOption < other.shippingOption;
+}
+
+bool Transaction::operator==(const Transaction &other) {
+    return date.getDay() == other.date.getDay() &&
+           date.getMonth() == other.date.getMonth() &&
+           date.getYear() == other.date.getYear() &&
+           shippingOption == other.shippingOption;
+}
