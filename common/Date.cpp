@@ -25,3 +25,8 @@ int Date::getYear() const {
 void Date::setYear(int year) {
     Date::year = year;
 }
+
+std::ostream &operator<<(std::ostream &os, const Date &date) {
+    os << date.year << "-" << date.month << "-" << date.day << std::endl;
+    return os;
+}

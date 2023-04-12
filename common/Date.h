@@ -1,6 +1,8 @@
 #ifndef TRANSACTIONDISCOUNTS_DATE_H
 #define TRANSACTIONDISCOUNTS_DATE_H
 
+#include <ostream>
+
 /**
  * @brief Class representing a date
  */
@@ -30,6 +32,9 @@ public:
     int getYear() const;
 
     void setYear(int year);
+
+    // operators
+    friend std::ostream &operator<<(std::ostream &os, const Date &date);
 };
 
 
