@@ -6,6 +6,7 @@
 #include "../Provider.h"
 
 #include <functional>
+#include <ostream>
 
 
 /**
@@ -44,6 +45,8 @@ public:
 
     // < operator for ShippingOption
     bool operator<(const ShippingOption& other) const;
+
+    friend std::ostream &operator<<(std::ostream &os, const ShippingOption &option);
 };
 
 #endif //TRANSACTIONDISCOUNTS_SHIPPINGOPTION_H

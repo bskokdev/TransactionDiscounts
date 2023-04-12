@@ -45,3 +45,13 @@ bool ShippingOption::operator<(const ShippingOption &other) const {
     }
     return false;
 }
+
+/**
+ * @brief Overload of the << operator for ShippingOption
+ * @param os The output stream
+ * @param option The ShippingOption to be printed
+ */
+std::ostream &operator<<(std::ostream &os, const ShippingOption &option) {
+    os << option.size << " " << option.provider << " " << option.price;
+    return os;
+}
