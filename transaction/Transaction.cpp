@@ -18,7 +18,7 @@ void Transaction::setShippingOption(const ShippingOption &shippingOption) {
     Transaction::shippingOption = shippingOption;
 }
 
-bool Transaction::operator<(const Transaction &other) {
+bool Transaction::operator<(const Transaction &other) const {
     if (date.getYear() != other.date.getYear()) {
         return date.getYear() < other.date.getYear();
     }
