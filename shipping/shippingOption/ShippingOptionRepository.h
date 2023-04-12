@@ -9,7 +9,6 @@
 
 /**
  * @brief Class representing a repository for shipping options
- * @details This class is a singleton
  */
 class ShippingOptionRepository : public IDataRepository<ShippingOption> {
 private:
