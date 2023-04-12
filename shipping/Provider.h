@@ -13,8 +13,8 @@ enum class Provider {
 
 /**
  * @brief Operator for printing provider to ostream
- * @param os
- * @param provider
+ * @param os output stream
+ * @param provider provider to be printed
  * @return std::ostream reference
  */
 std::ostream& operator<<(std::ostream& os, const Provider& provider);

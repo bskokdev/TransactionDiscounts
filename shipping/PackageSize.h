@@ -1,6 +1,7 @@
 #ifndef TRANSACTIONDISCOUNTS_PACKAGESIZE_H
 #define TRANSACTIONDISCOUNTS_PACKAGESIZE_H
 
+#include <ostream>
 
 /**
  * @brief Enum for package sizes
@@ -11,5 +12,12 @@ enum class PackageSize {
     L
 };
 
+/**
+ * @brief Operator for printing package size to ostream
+ * @param os output stream
+ * @param packageSize PackageSize to be printed
+ * @return std::ostream reference
+ */
+std::ostream& operator<<(std::ostream& os, const PackageSize& packageSize);
 
 #endif //TRANSACTIONDISCOUNTS_PACKAGESIZE_H
