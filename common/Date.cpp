@@ -28,10 +28,10 @@ void Date::setYear(int year) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Date &date) {
-    os << date.year << "-"
-       << std::setw(2) << std::setfill('0') << date.month
+    os << date.getYear() << "-"
+       << std::setw(2) << std::setfill('0') << date.getMonth()
        << std::setw(0) << std::setfill(' ') << "-"
-       << std::setw(2) << std::setfill('0') << date.day;
+       << std::setw(2) << std::setfill('0') << date.getDay();
     return os;
 }
 

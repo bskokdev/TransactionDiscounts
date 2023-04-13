@@ -42,8 +42,8 @@ bool Transaction::operator==(const Transaction &other) const {
            shippingOption.getProvider() == other.shippingOption.getProvider();
 }
 
-std::ostream &operator<<(std::ostream &os, const Transaction &transaction) {
-    os << transaction.date << " " << transaction.shippingOption << " ";
+std::ostream &operator<<(std::ostream &os, Transaction &transaction) {
+    os << transaction.getDate() << " " << transaction.getShippingOption() << " ";
     return os;
 }
 
