@@ -42,7 +42,7 @@ public:
      * @param transaction Transaction to be printed
      * @return reference to the output stream
      */
-    friend std::ostream &operator<<(std::ostream &os, const Transaction &transaction);
+    friend std::ostream &operator<<(std::ostream &os, Transaction &transaction);
 };
 
 
