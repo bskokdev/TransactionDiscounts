@@ -3,13 +3,6 @@
 DiscountService::DiscountService(double minSmallPackagePrice, double maxMonthlyDiscount)
     : minSmallPackagePrice(minSmallPackagePrice), maxMonthlyDiscount(maxMonthlyDiscount) {}
 
-std::pair<Transaction, double> DiscountService::manageTransactionDiscount(Transaction &transaction) {
-    double discount = calcDiscountForTransaction(transaction);
-    applyDiscountToTransaction(transaction, discount);
-
-    return {transaction, discount};
-}
-
 double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
     std::string currentMonth = transaction.getDate().getMonthYear();
     MonthlyDiscountInfo& info = this->discountTracker[currentMonth];

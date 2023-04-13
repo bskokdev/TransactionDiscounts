@@ -25,21 +25,18 @@ private:
     bool isFreeLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
 
     /**
-     * @brief Calculates discount for given transaction
-     * @param transaction Transaction to calculate discount for
-     * @return discount
-     */
-    double calcDiscountForTransaction(Transaction &transaction);
-
-    double calcDiscountBasedOnSize(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
-
-    /**
      * Calculates discount for small package
      * @param shippingOption Shipping option to calculate discount for
      * @return discount
      */
     double calcDiscountForSmallPackage(ShippingOption &shippingOption);
 
+    /**
+     * Calculates discount for large package
+     * @param option Shipping option to calculate discount for
+     * @param info Monthly discount info
+     * @return discount
+     */
     double calcDiscountForLargePackage(ShippingOption &option, MonthlyDiscountInfo &info);
 
     /**
@@ -49,22 +46,30 @@ private:
      */
     bool isDiscountCapReached(MonthlyDiscountInfo &info);
 
+public:
+    DiscountService(double minSmallPackagePrice, double maxMonthlyDiscount);
+
+    /**
+     * @brief Calculates discount for given transaction
+     * @param transaction Transaction to calculate discount for
+     * @return discount
+     */
+    double calcDiscountForTransaction(Transaction &transaction);
+
+    /**
+     * Calculates discount based on size of package
+     * @param shippingOption Shipping option to calculate discount for
+     * @param info Monthly discount info
+     * @return discount
+     */
+    double calcDiscountBasedOnSize(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
+
     /**
      * @brief Applies discount to transaction
      * @param transaction Transaction to apply discount to
      * @param discount discount to be applied
      */
     void applyDiscountToTransaction(Transaction &transaction, double discount);
-public:
-    DiscountService(double minSmallPackagePrice, double maxMonthlyDiscount);
-
-    /**
-     * @brief Calculates and applies discount to a transaction
-     * @param transaction Transaction to apply usedDiscount to
-     * @param discount Discount to apply
-     * @return pair of transaction and discount
-     */
-    std::pair<Transaction, double> manageTransactionDiscount(Transaction &transaction);
 
 };
 
