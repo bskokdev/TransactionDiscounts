@@ -15,17 +15,15 @@
  */
 class Application {
 private:
-    TransactionPrinter& printer;
     ShippingOptionRepository& shippingRepo;
     TransactionRepository& transactionRepo;
 public:
     /**
      * @brief Constructor with dependencies
      * @details The dependencies are injected via constructor
-     * @param printer TransactionPrinter instance
      * @param shippingRepo ShippingOptionRepository instance
      */
-    Application(TransactionPrinter &printer, ShippingOptionRepository &shippingRepo, TransactionRepository &transactionRepo);
+    Application(ShippingOptionRepository &shippingRepo, TransactionRepository &transactionRepo);
 
     /**
      * @brief Run the application

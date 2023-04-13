@@ -1,9 +1,7 @@
 #include "Application.h"
 
-Application::Application(TransactionPrinter &printer,
-                         ShippingOptionRepository &shippingRepo,
-                         TransactionRepository &transactionRepo)
-        : printer(printer), shippingRepo(shippingRepo), transactionRepo(transactionRepo) {}
+Application::Application(ShippingOptionRepository &shippingRepo, TransactionRepository &transactionRepo)
+        : shippingRepo(shippingRepo), transactionRepo(transactionRepo) {}
 
 void Application::run() {
     initialize();
@@ -17,13 +15,13 @@ void Application::run() {
     Reader reader(path);
     std::vector<std::string> lines = reader.readLines();
 
-    // validation etc.
+    // validation & discounts
 }
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.
-    shippingRepo.add(ShippingOption(Provider::MR, PackageSize::S, 10));
-    shippingRepo.add(ShippingOption(Provider::MR, PackageSize::M, 20));
-    shippingRepo.add(ShippingOption(Provider::LP, PackageSize::L, 30));
+    this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::S, 10));
+    this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::M, 20));
+    this->shippingRepo.add(ShippingOption(Provider::LP, PackageSize::L, 30));
 }
 
