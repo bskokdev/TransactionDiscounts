@@ -17,6 +17,8 @@ public:
     // constructor
     ShippingOptionRepository();
 
+    ShippingOption findFromString(const std::string &provider, const std::string &packageSize);
+    ShippingOption findFromProviderAndPackageSize(Provider provider, PackageSize packageSize);
     // IDataRepository methods
     bool exists(const ShippingOption& shippingOption) override;
     void add(const ShippingOption& shippingOption) override;

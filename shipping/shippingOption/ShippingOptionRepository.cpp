@@ -38,3 +38,21 @@ void ShippingOptionRepository::update(const ShippingOption &shippingOption) {
 std::vector<ShippingOption> ShippingOptionRepository::getAll() {
     return this->shippingOptions;
 }
+
+ShippingOption ShippingOptionRepository::findFromString(const std::string &provider, const std::string &packageSize) {
+    // convert the strings to enums
+    Provider providerEnum = getProviderFromString(provider);
+    PackageSize packageSizeEnum = getPackageSizeFromString(packageSize);
+
+    return this->findFromProviderAndPackageSize(providerEnum, packageSizeEnum);
+}
+
+ShippingOption ShippingOptionRepository::findFromProviderAndPackageSize(Provider provider, PackageSize packageSize) {
+    for(auto& option : this->shippingOptions) {
+        if(option.getProvider() == provider && option.getSize() == packageSize) {
+            return option;
+        }
+    }
+    throw std::invalid_argument("No shipping option found");
+}
+
