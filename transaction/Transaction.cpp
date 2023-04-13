@@ -10,7 +10,7 @@ void Transaction::setDate(const Date &date) {
     Transaction::date = date;
 }
 
-const ShippingOption &Transaction::getShippingOption() const {
+const ShippingOption Transaction::getShippingOption() const {
     return shippingOption;
 }
 

@@ -37,7 +37,7 @@ public:
 
     double getPrice() const;
 
-    void setPrice(double price);
+    void setPrice(double price) const;
 
     // operators
     // == operator for ShippingOption

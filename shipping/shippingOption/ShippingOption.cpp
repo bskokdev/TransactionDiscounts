@@ -23,7 +23,7 @@ double ShippingOption::getPrice() const {
     return price;
 }
 
-void ShippingOption::setPrice(double price) {
+void ShippingOption::setPrice(double price) const {
     ShippingOption::price = price;
 }
 

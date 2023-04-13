@@ -25,7 +25,7 @@ public:
 
     void setDate(const Date &date);
 
-    const ShippingOption &getShippingOption() const;
+    const ShippingOption getShippingOption() const;
 
     void setShippingOption(const ShippingOption &shippingOption);
 
