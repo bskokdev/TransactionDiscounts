@@ -12,6 +12,13 @@ enum class Provider {
 };
 
 /**
+ * @brief Converts string to Provider
+ * @param provider string to be converted
+ * @return Provider
+ */
+Provider getProviderFromString(const std::string &provider);
+
+/**
  * @brief Operator for printing provider to ostream
  * @param os output stream
  * @param provider provider to be printed

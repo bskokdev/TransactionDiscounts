@@ -13,6 +13,13 @@ enum class PackageSize {
 };
 
 /**
+ * @brief Converts string to PackageSize
+ * @param packageSize string to be converted
+ * @return PackageSize
+ */
+PackageSize getPackageSizeFromString(const std::string &packageSize);
+
+/**
  * @brief Operator for printing package size to ostream
  * @param os output stream
  * @param packageSize PackageSize to be printed
