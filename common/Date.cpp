@@ -30,3 +30,7 @@ std::ostream &operator<<(std::ostream &os, const Date &date) {
     os << date.year << "-" << date.month << "-" << date.day;
     return os;
 }
+
+std::string Date::getMonthYear() const {
+    return std::to_string(this->month) + "-" + std::to_string(this->year);
+}

@@ -20,6 +20,8 @@ public:
      */
     Date(int day, int month, int year);
 
+    std::string getMonthYear() const;
+
     // Getters and setters
     int getDay() const;
 
