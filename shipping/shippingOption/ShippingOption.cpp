@@ -54,6 +54,6 @@ bool ShippingOption::operator<(const ShippingOption &other) const {
  */
 std::ostream &operator<<(std::ostream &os, const ShippingOption &option) {
     os << option.getSize() << " " << option.getProvider() << " "
-    << std::fixed << std::setprecision(2) << option.getPrice();
+       << std::fixed << std::setprecision(2) << option.getPrice();
     return os;
 }

@@ -40,7 +40,7 @@ double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOpti
 }
 
 double DiscountService::calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
-    if(shippingOption.getSize() == PackageSize::L) {
+    if (shippingOption.getSize() == PackageSize::L) {
         info.sizesCount[shippingOption.getSize()]++;
         if (isFreeLargePackage(shippingOption, info)) {
             return shippingOption.getPrice();
