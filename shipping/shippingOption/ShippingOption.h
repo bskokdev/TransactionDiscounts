@@ -41,10 +41,10 @@ public:
 
     // operators
     // == operator for ShippingOption
-    bool operator==(const ShippingOption& other) const;
+    bool operator==(const ShippingOption &other) const;
 
     // < operator for ShippingOption
-    bool operator<(const ShippingOption& other) const;
+    bool operator<(const ShippingOption &other) const;
 
     /**
      * @brief Overload of the << operator for ShippingOption

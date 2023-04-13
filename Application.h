@@ -14,7 +14,7 @@
  */
 class Application {
 private:
-    ShippingOptionRepository& shippingRepo;
+    ShippingOptionRepository &shippingRepo;
 
     /**
      * @brief Read input file path from user
@@ -49,6 +49,7 @@ private:
      * @param discount discount
      */
     void printTransactionAndDiscount(Transaction &transaction, double discount);
+
 public:
     /**
      * @brief Constructor with dependencies

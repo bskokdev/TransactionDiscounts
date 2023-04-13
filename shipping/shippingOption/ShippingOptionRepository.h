@@ -32,6 +32,7 @@ public:
      * @return ShippingOption
      */
     ShippingOption findFromProviderAndPackageSize(Provider provider, PackageSize packageSize);
+
     /**
      * @brief Finds the lowest price for a given package size
      * @param packageSize Package size to find lowest price for
@@ -40,10 +41,14 @@ public:
     double findLowestPriceForPackageSize(PackageSize packageSize);
 
     // IDataRepository methods
-    bool exists(const ShippingOption& shippingOption) override;
-    void add(const ShippingOption& shippingOption) override;
-    void remove(const ShippingOption& shippingOption) override;
-    void update(const ShippingOption& shippingOption) override;
+    bool exists(const ShippingOption &shippingOption) override;
+
+    void add(const ShippingOption &shippingOption) override;
+
+    void remove(const ShippingOption &shippingOption) override;
+
+    void update(const ShippingOption &shippingOption) override;
+
     std::vector<ShippingOption> getAll() override;
 };
 

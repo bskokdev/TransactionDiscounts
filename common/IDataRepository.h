@@ -16,26 +16,27 @@ public:
      * @param item
      * @return true if the repository contains the given item
      */
-    virtual bool exists(const T& item) = 0;
+    virtual bool exists(const T &item) = 0;
 
     /**
      * @brief Add the given item to the repository
      * @param item
      */
-    virtual void add(const T& item) = 0;
+    virtual void add(const T &item) = 0;
 
     /**
      * @brief Remove the given item from the repository
      * @param item
      */
-    virtual void remove(const T& item) = 0;
+    virtual void remove(const T &item) = 0;
 
     /**
      * @brief Update the given item in the repository
      * @param item
      */
 
-    virtual void update(const T& item) = 0;
+    virtual void update(const T &item) = 0;
+
     /**
      * @brief Get all items from the repository
      * @return std::vector<T>

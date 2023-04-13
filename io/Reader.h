@@ -14,6 +14,7 @@ private:
     std::string filePath;
 public:
     Reader();
+
     /**
      * @brief Construct a new Reader object
      * @param filePath

@@ -18,7 +18,7 @@ public:
      * @param date date of the transaction
      * @param shippingOption shipping option of the transaction
      */
-    Transaction(const Date& date, const ShippingOption& shippingOption);
+    Transaction(const Date &date, const ShippingOption &shippingOption);
 
     // Getters and setters
     const Date &getDate() const;
@@ -32,15 +32,17 @@ public:
     void setShippingOption(const ShippingOption &shippingOption);
 
     // operators
-    bool operator<(const Transaction& other) const;
-    bool operator==(const Transaction& other) const;
+    bool operator<(const Transaction &other) const;
+
+    bool operator==(const Transaction &other) const;
+
     /**
      * @brief Overload of the << operator for Transaction
      * @param os output stream
      * @param transaction Transaction to be printed
      * @return reference to the output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const Transaction& transaction);
+    friend std::ostream &operator<<(std::ostream &os, const Transaction &transaction);
 };
 
 

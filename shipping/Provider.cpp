@@ -1,16 +1,16 @@
 #include "Provider.h"
 
 Provider getProviderFromString(const std::string &provider) {
-    if(provider == "LP") {
+    if (provider == "LP") {
         return Provider::LP;
-    } else if(provider == "MR") {
+    } else if (provider == "MR") {
         return Provider::MR;
     } else {
         throw std::invalid_argument("Invalid provider");
     }
 }
 
-std::ostream& operator<<(std::ostream& os, const Provider& provider) {
+std::ostream &operator<<(std::ostream &os, const Provider &provider) {
     switch (provider) {
         case Provider::LP:
             os << "LP";

@@ -24,6 +24,6 @@ Provider getProviderFromString(const std::string &provider);
  * @param provider provider to be printed
  * @return std::ostream reference
  */
-std::ostream& operator<<(std::ostream& os, const Provider& provider);
+std::ostream &operator<<(std::ostream &os, const Provider &provider);
 
 #endif //TRANSACTIONDISCOUNTS_PROVIDER_H

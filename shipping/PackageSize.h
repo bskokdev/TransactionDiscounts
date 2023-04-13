@@ -25,6 +25,6 @@ PackageSize getPackageSizeFromString(const std::string &packageSize);
  * @param packageSize PackageSize to be printed
  * @return std::ostream reference
  */
-std::ostream& operator<<(std::ostream& os, const PackageSize& packageSize);
+std::ostream &operator<<(std::ostream &os, const PackageSize &packageSize);
 
 #endif //TRANSACTIONDISCOUNTS_PACKAGESIZE_H

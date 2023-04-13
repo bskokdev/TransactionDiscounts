@@ -37,7 +37,7 @@ Transaction Application::createTransaction(std::string &line) {
     // Split the date into tokens (year, month, day) & create a Date object
     std::vector<std::string> dateTokens = reader.tokenize(transactionTokens[0], '-');
     Date date = Date(
-            std::stoi(dateTokens[0]),std::stoi(dateTokens[1]),std::stoi(dateTokens[2]));
+            std::stoi(dateTokens[0]), std::stoi(dateTokens[1]), std::stoi(dateTokens[2]));
 
     // create a transaction object
     return Transaction(date, shippingOption);
@@ -69,7 +69,7 @@ void Application::run() {
 
     // todo: validation!
     // do this for valid lines
-    for(auto& line : lines) {
+    for (auto &line: lines) {
         Transaction transaction = createTransaction(line);
         double discount = applyDiscount(transaction);
         printTransactionAndDiscount(transaction, discount);

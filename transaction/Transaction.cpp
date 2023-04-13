@@ -2,6 +2,7 @@
 
 Transaction::Transaction(const Date &date, const ShippingOption &shippingOption) : date(date),
                                                                                    shippingOption(shippingOption) {}
+
 const Date &Transaction::getDate() const {
     return date;
 }

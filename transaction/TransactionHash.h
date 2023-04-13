@@ -14,7 +14,7 @@ struct TransactionHash {
      * @param t transaction to hash
      * @return hash of the transaction
      */
-    std::size_t operator()(const Transaction& t) const;
+    std::size_t operator()(const Transaction &t) const;
 };
 
 

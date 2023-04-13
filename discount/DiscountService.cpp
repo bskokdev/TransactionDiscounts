@@ -1,16 +1,16 @@
 #include "DiscountService.h"
 
 DiscountService::DiscountService(double minSmallPackagePrice, double maxMonthlyDiscount)
-    : minSmallPackagePrice(minSmallPackagePrice), maxMonthlyDiscount(maxMonthlyDiscount) {}
+        : minSmallPackagePrice(minSmallPackagePrice), maxMonthlyDiscount(maxMonthlyDiscount) {}
 
 double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
     std::string currentMonth = transaction.getDate().getMonthYear();
-    MonthlyDiscountInfo& info = this->discountTracker[currentMonth];
+    MonthlyDiscountInfo &info = this->discountTracker[currentMonth];
 
     ShippingOption shippingOption = transaction.getShippingOption();
     double discount = calcDiscountBasedOnSize(shippingOption, info);
 
-    if(isDiscountCapReached(info)) {
+    if (isDiscountCapReached(info)) {
         discount = this->maxMonthlyDiscount - info.usedDiscount;
     } else {
         info.usedDiscount += discount;
@@ -19,7 +19,7 @@ double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
 }
 
 double DiscountService::calcDiscountBasedOnSize(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
-    switch(shippingOption.getSize()) {
+    switch (shippingOption.getSize()) {
         case PackageSize::S:
             return this->calcDiscountForSmallPackage(shippingOption);
         case PackageSize::L:
@@ -30,8 +30,8 @@ double DiscountService::calcDiscountBasedOnSize(ShippingOption &shippingOption, 
 }
 
 double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOption) {
-    if(shippingOption.getSize() == PackageSize::S) {
-        if(shippingOption.getPrice() >= this->minSmallPackagePrice) {
+    if (shippingOption.getSize() == PackageSize::S) {
+        if (shippingOption.getPrice() >= this->minSmallPackagePrice) {
             return shippingOption.getPrice() - this->minSmallPackagePrice;
         }
     }
@@ -40,7 +40,7 @@ double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOpti
 
 double DiscountService::calcDiscountForLargePackage(ShippingOption &option, MonthlyDiscountInfo &info) {
     info.largePackageCount++;
-    if(isFreeLargePackage(option, info)) {
+    if (isFreeLargePackage(option, info)) {
         return option.getPrice();
     }
     return 0.0;
@@ -51,7 +51,7 @@ bool DiscountService::isFreeLargePackage(ShippingOption &shippingOption, Monthly
     if (shippingOption.getSize() == PackageSize::L && shippingOption.getProvider() == Provider::LP) {
         // check if there have been already 2 transactions with LP large package in the month of the current transaction
         // if so, return true else return false
-        if(info.largePackageCount == 2) {
+        if (info.largePackageCount == 2) {
             return true;
         }
     }

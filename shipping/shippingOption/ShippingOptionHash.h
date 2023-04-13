@@ -13,7 +13,7 @@ struct ShippingOptionHash {
      * @param s shipping option to hash
      * @return hash of the shipping option
      */
-    std::size_t operator()(const ShippingOption& s) const;
+    std::size_t operator()(const ShippingOption &s) const;
 };
 
 

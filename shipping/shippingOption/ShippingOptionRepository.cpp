@@ -3,8 +3,8 @@
 ShippingOptionRepository::ShippingOptionRepository() {}
 
 bool ShippingOptionRepository::exists(const ShippingOption &shippingOption) {
-    for(auto& option : this->shippingOptions) {
-        if(option == shippingOption) {
+    for (auto &option: this->shippingOptions) {
+        if (option == shippingOption) {
             return true;
         }
     }
@@ -17,7 +17,7 @@ void ShippingOptionRepository::add(const ShippingOption &shippingOption) {
 }
 
 void ShippingOptionRepository::remove(const ShippingOption &shippingOption) {
-    if(this->exists(shippingOption)) {
+    if (this->exists(shippingOption)) {
         // find the shipping option and remove it using the iterator
         auto it = std::find(this->shippingOptions.begin(), this->shippingOptions.end(), shippingOption);
         this->shippingOptions.erase(it);
@@ -26,9 +26,9 @@ void ShippingOptionRepository::remove(const ShippingOption &shippingOption) {
 
 void ShippingOptionRepository::update(const ShippingOption &shippingOption) {
     // find the shipping option and overwrite it
-    if(this->exists(shippingOption)) {
-        for(auto& option : this->shippingOptions) {
-            if(option == shippingOption) {
+    if (this->exists(shippingOption)) {
+        for (auto &option: this->shippingOptions) {
+            if (option == shippingOption) {
                 option = shippingOption;
             }
         }
@@ -48,8 +48,8 @@ ShippingOption ShippingOptionRepository::findFromString(const std::string &provi
 }
 
 ShippingOption ShippingOptionRepository::findFromProviderAndPackageSize(Provider provider, PackageSize packageSize) {
-    for(auto& option : this->shippingOptions) {
-        if(option.getProvider() == provider && option.getSize() == packageSize) {
+    for (auto &option: this->shippingOptions) {
+        if (option.getProvider() == provider && option.getSize() == packageSize) {
             return option;
         }
     }
@@ -58,9 +58,9 @@ ShippingOption ShippingOptionRepository::findFromProviderAndPackageSize(Provider
 
 double ShippingOptionRepository::findLowestPriceForPackageSize(PackageSize packageSize) {
     double lowestPrice = INT_MAX;
-    for(auto& option : this->shippingOptions) {
-        if(option.getSize() == packageSize) {
-            if(option.getPrice() < lowestPrice) {
+    for (auto &option: this->shippingOptions) {
+        if (option.getSize() == packageSize) {
+            if (option.getPrice() < lowestPrice) {
                 lowestPrice = option.getPrice();
             }
         }
