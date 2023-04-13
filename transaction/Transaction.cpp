@@ -43,7 +43,7 @@ bool Transaction::operator==(const Transaction &other) const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Transaction &transaction) {
-    os << transaction.date << " " << transaction.shippingOption;
+    os << transaction.date << " " << transaction.shippingOption << " ";
     return os;
 }
 

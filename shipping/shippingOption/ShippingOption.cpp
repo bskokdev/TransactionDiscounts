@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "ShippingOption.h"
 
 ShippingOption::ShippingOption(Provider provider, PackageSize size, double price) : provider(provider), size(size),
@@ -52,6 +53,7 @@ bool ShippingOption::operator<(const ShippingOption &other) const {
  * @param option The ShippingOption to be printed
  */
 std::ostream &operator<<(std::ostream &os, const ShippingOption &option) {
-    os << option.size << " " << option.provider << " " << option.price;
+    os << option.getSize() << " " << option.getProvider() << " "
+    << std::fixed << std::setprecision(2) << option.getPrice();
     return os;
 }
