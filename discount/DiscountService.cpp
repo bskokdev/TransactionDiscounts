@@ -21,7 +21,7 @@ double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
 double DiscountService::calcDiscountBasedOnSize(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
     switch (shippingOption.getSize()) {
         case PackageSize::S:
-            return this->calcDiscountForSmallPackage(shippingOption);
+            return this->calcDiscountForSmallPackage(shippingOption, info);
         case PackageSize::L:
             return this->calcDiscountForLargePackage(shippingOption, info);
         default:
@@ -29,8 +29,9 @@ double DiscountService::calcDiscountBasedOnSize(ShippingOption &shippingOption, 
     }
 }
 
-double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOption) {
+double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
     if (shippingOption.getSize() == PackageSize::S) {
+        info.sizesCount[shippingOption.getSize()]++;
         if (shippingOption.getPrice() >= this->minSmallPackagePrice) {
             return shippingOption.getPrice() - this->minSmallPackagePrice;
         }
@@ -38,10 +39,12 @@ double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOpti
     return 0.0;
 }
 
-double DiscountService::calcDiscountForLargePackage(ShippingOption &option, MonthlyDiscountInfo &info) {
-    info.largePackageCount++;
-    if (isFreeLargePackage(option, info)) {
-        return option.getPrice();
+double DiscountService::calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
+    if(shippingOption.getSize() == PackageSize::L) {
+        info.sizesCount[shippingOption.getSize()]++;
+        if (isFreeLargePackage(shippingOption, info)) {
+            return shippingOption.getPrice();
+        }
     }
     return 0.0;
 }
@@ -51,7 +54,7 @@ bool DiscountService::isFreeLargePackage(ShippingOption &shippingOption, Monthly
     if (shippingOption.getSize() == PackageSize::L && shippingOption.getProvider() == Provider::LP) {
         // check if there have been already 2 transactions with LP large package in the month of the current transaction
         // if so, return true else return false
-        if (info.largePackageCount == 2) {
+        if (info.sizesCount[PackageSize::L] == 2) {
             return true;
         }
     }

@@ -3,10 +3,10 @@
 
 struct MonthlyDiscountInfo {
     double usedDiscount;
-    int largePackageCount;
+    std::map<PackageSize, int> sizesCount;
 
     // default constructor
-    MonthlyDiscountInfo() : usedDiscount(0), largePackageCount(0) {}
+    MonthlyDiscountInfo() : usedDiscount(0) {}
 };
 
 #endif //TRANSACTIONDISCOUNTS_MONTHLYDISCOUNTINFO_H

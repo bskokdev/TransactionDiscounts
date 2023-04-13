@@ -85,5 +85,6 @@ void Application::run() {
         Transaction transaction = createTransaction(line);
         double discount = applyDiscount(transaction);
         printTransactionAndDiscount(transaction, discount);
+        // we could also save the discounted transaction to a database here
     }
 }

@@ -29,15 +29,15 @@ private:
      * @param shippingOption Shipping option to calculate discount for
      * @return discount
      */
-    double calcDiscountForSmallPackage(ShippingOption &shippingOption);
+    double calcDiscountForSmallPackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
 
     /**
      * Calculates discount for large package
-     * @param option Shipping option to calculate discount for
+     * @param shippingOption Shipping shippingOption to calculate discount for
      * @param info Monthly discount info
      * @return discount
      */
-    double calcDiscountForLargePackage(ShippingOption &option, MonthlyDiscountInfo &info);
+    double calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
 
     /**
      * @brief Checks if discount cap is reached
