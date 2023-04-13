@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "Application.h"
 #include "discount/DiscountService.h"
 
@@ -31,13 +32,17 @@ Transaction Application::createTransaction(std::string &line) {
     // split the line into tokens (date, provider, package size)
     std::vector<std::string> transactionTokens = reader.tokenize(line, ' ');
     // todo: validation!
-    ShippingOption shippingOption =
-            shippingRepo.findFromString(transactionTokens[2], transactionTokens[1]);
+    std::string provider = transactionTokens[2];
+    std::string packageSize = transactionTokens[1];
+    ShippingOption shippingOption = shippingRepo.findFromString(provider, packageSize);
 
     // Split the date into tokens (year, month, day) & create a Date object
     std::vector<std::string> dateTokens = reader.tokenize(transactionTokens[0], '-');
-    Date date = Date(
-            std::stoi(dateTokens[0]), std::stoi(dateTokens[1]), std::stoi(dateTokens[2]));
+    int year = std::stoi(dateTokens[0]);
+    int month = std::stoi(dateTokens[1]);
+    int day = std::stoi(dateTokens[2]);
+
+    Date date = Date(day, month, year);
 
     // create a transaction object
     return Transaction(date, shippingOption);
@@ -55,7 +60,14 @@ double Application::applyDiscount(Transaction &transaction) {
 
 void Application::printTransactionAndDiscount(Transaction &transaction, double discount) {
     std::cout << transaction;
-    std::cout << (discount == 0.0 ? "-" : std::to_string(discount)) << std::endl;
+    // print the discount with 2 decimal places or "-" if the discount is 0
+    std::stringstream ss;
+    if (discount == 0.0) {
+        ss << "-";
+    } else {
+        ss << std::fixed << std::setprecision(2) << discount;
+    }
+    std::cout << ss.str() << std::endl;
 }
 
 void Application::run() {
