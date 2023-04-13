@@ -17,8 +17,28 @@ public:
     // constructor
     ShippingOptionRepository();
 
+    /**
+     * @brief Finds a shipping option from a given provider and package size as strings
+     * @param provider string representation of provider
+     * @param packageSize string representation of package size
+     * @return ShippingOption
+     */
     ShippingOption findFromString(const std::string &provider, const std::string &packageSize);
+
+    /**
+     * @brief Finds a shipping option from a given provider and package size
+     * @param provider
+     * @param packageSize
+     * @return ShippingOption
+     */
     ShippingOption findFromProviderAndPackageSize(Provider provider, PackageSize packageSize);
+    /**
+     * @brief Finds the lowest price for a given package size
+     * @param packageSize Package size to find lowest price for
+     * @return double Lowest price
+     */
+    double findLowestPriceForPackageSize(PackageSize packageSize);
+
     // IDataRepository methods
     bool exists(const ShippingOption& shippingOption) override;
     void add(const ShippingOption& shippingOption) override;
