@@ -13,11 +13,6 @@ class TransactionPrinter : public IPrinter<Transaction> {
 public:
     // constructor
     TransactionPrinter();
-    /**
-     * @brief Get the instance of TransactionPrinter
-     * @return TransactionPrinter reference
-     */
-    static TransactionPrinter& getInstance();
 
     /**
      * @brief Print transaction
