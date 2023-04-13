@@ -1,6 +1,8 @@
 #include <sstream>
 #include "Reader.h"
 
+Reader::Reader() {}
+
 Reader::Reader(const std::string &filePath) : filePath(filePath) {}
 
 std::vector<std::string> Reader::readLines() {
