@@ -3,9 +3,11 @@
 DiscountService::DiscountService(double minSmallPackagePrice, double maxMonthlyDiscount)
     : minSmallPackagePrice(minSmallPackagePrice), maxMonthlyDiscount(maxMonthlyDiscount) {}
 
-void DiscountService::manageTransactionDiscount(Transaction &transaction) {
+std::pair<Transaction, double> DiscountService::manageTransactionDiscount(Transaction &transaction) {
     double discount = calcDiscountForTransaction(transaction);
     applyDiscountToTransaction(transaction, discount);
+
+    return
 }
 
 double DiscountService::calcDiscountForTransaction(Transaction &transaction) {

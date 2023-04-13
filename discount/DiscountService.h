@@ -62,8 +62,9 @@ public:
      * @brief Calculates and applies discount to a transaction
      * @param transaction Transaction to apply usedDiscount to
      * @param discount Discount to apply
+     * @return pair of transaction and discount
      */
-    void manageTransactionDiscount(Transaction &transaction);
+    std::pair<Transaction, double> manageTransactionDiscount(Transaction &transaction);
 
 };
 
