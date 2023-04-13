@@ -7,7 +7,7 @@ std::pair<Transaction, double> DiscountService::manageTransactionDiscount(Transa
     double discount = calcDiscountForTransaction(transaction);
     applyDiscountToTransaction(transaction, discount);
 
-    return
+    return {transaction, discount};
 }
 
 double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
