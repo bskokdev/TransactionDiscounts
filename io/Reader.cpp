@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Reader.h"
 
 Reader::Reader(const std::string &filePath) : filePath(filePath) {}
@@ -18,6 +19,16 @@ std::vector<std::string> Reader::readLines() {
         std::cout << "Unable to open file: " << filePath << std::endl;
     }
     return lines;
+}
+
+std::vector<std::string> Reader::tokenize(std::string &str, char delimiter) {
+    std::vector<std::string> tokens;
+    std::stringstream ss(str);
+    std::string token;
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    return tokens;
 }
 
 

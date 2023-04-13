@@ -25,6 +25,13 @@ public:
      * @return std::vector<std::string>
      */
     std::vector<std::string> readLines();
+
+    /**
+     * @brief Tokenize the given string by the given delimiter
+     * @param str String to tokenize
+     * @return vector of tokens
+     */
+    std::vector<std::string> tokenize(std::string &str, char delimiter);
 };
 
 
