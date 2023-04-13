@@ -64,7 +64,7 @@ bool DiscountService::isFreeLargePackage(ShippingOption &shippingOption, Monthly
 }
 
 void DiscountService::applyDiscountToTransaction(Transaction &transaction, double discount) {
-    transaction.getShippingOption().setPrice(transaction.getShippingOption().getPrice() - discount);
+    transaction.updateShippingPrice(transaction.getShippingOption().getPrice() - discount);
 }
 
 bool DiscountService::isDiscountCapReached(MonthlyDiscountInfo &info) {

@@ -25,7 +25,9 @@ public:
 
     void setDate(const Date &date);
 
-    const ShippingOption getShippingOption() const;
+    const ShippingOption getShippingOption();
+
+    void updateShippingPrice(double newPrice);
 
     void setShippingOption(const ShippingOption &shippingOption);
 

@@ -10,7 +10,7 @@ void Transaction::setDate(const Date &date) {
     Transaction::date = date;
 }
 
-const ShippingOption Transaction::getShippingOption() const {
+const ShippingOption Transaction::getShippingOption() {
     return shippingOption;
 }
 
@@ -44,4 +44,8 @@ bool Transaction::operator==(const Transaction &other) const {
 std::ostream &operator<<(std::ostream &os, const Transaction &transaction) {
     os << transaction.date << " " << transaction.shippingOption;
     return os;
+}
+
+void Transaction::updateShippingPrice(double newPrice) {
+    shippingOption.setPrice(newPrice);
 }
