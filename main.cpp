@@ -2,9 +2,8 @@
 
 int main() {
     ShippingOptionRepository shippingRepo;
-    TransactionRepository transactionRepo;
 
-    Application app(shippingRepo, transactionRepo);
+    Application app(shippingRepo);
     app.run();
     return 0;
 }
