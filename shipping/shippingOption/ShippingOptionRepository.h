@@ -38,7 +38,7 @@ public:
      * @param packageSize Package size to find lowest price for
      * @return double Lowest price
      */
-    double findLowestPriceForPackageSize(PackageSize packageSize);
+    double findLowestPriceForSize(PackageSize packageSize);
 
     // IDataRepository methods
     bool exists(const ShippingOption &shippingOption) override;

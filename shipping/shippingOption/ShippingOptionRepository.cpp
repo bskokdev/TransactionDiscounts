@@ -56,7 +56,7 @@ ShippingOption ShippingOptionRepository::findFromProviderAndPackageSize(Provider
     throw std::invalid_argument("No shipping option found");
 }
 
-double ShippingOptionRepository::findLowestPriceForPackageSize(PackageSize packageSize) {
+double ShippingOptionRepository::findLowestPriceForSize(PackageSize packageSize) {
     double lowestPrice = INT_MAX;
     for (auto &option: this->shippingOptions) {
         if (option.getSize() == packageSize) {
