@@ -19,6 +19,7 @@ double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
     info.incrementMonthlyCounters(shippingOption.getSize(), shippingOption.getProvider());
 
     double discount = calcDiscountBasedOnSize(shippingOption, info);
+    // validate discount if not greater than available discount amount
     applyDiscountToAvailableAmount(info, discount);
 
     return discount;

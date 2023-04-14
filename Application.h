@@ -36,7 +36,7 @@ private:
      * @param line input line
      * @return Transaction object
      */
-    Transaction createTransaction(std::string &line);
+    Transaction buildTransactionFromUserInputLine(std::string &line);
 
     /**
      * @brief Apply discount on the transaction and return the discount

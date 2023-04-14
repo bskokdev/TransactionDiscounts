@@ -5,6 +5,9 @@
 #include "../shipping/PackageSize.h"
 #include "../shipping/Provider.h"
 
+/**
+ * @brief Class representing monthly discount info (state of discount for a month)
+ */
 class MonthlyDiscountInfo {
 private:
     double availableDiscount;
