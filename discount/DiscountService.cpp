@@ -1,37 +1,52 @@
 #include "DiscountService.h"
 
-DiscountService::DiscountService(double minSmallPackagePrice, double maxMonthlyDiscount)
-        : minSmallPackagePrice(minSmallPackagePrice), maxMonthlyDiscount(maxMonthlyDiscount) {}
+DiscountService::DiscountService(double maxMonthlyDiscount) : maxMonthlyDiscount(maxMonthlyDiscount) {
+    // default
+    this->minSmallPackagePrice = INT_MAX;
+}
 
 double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
     std::string currentMonth = transaction.getDate().getMonthYear();
+
+    // If the month is not in the map, create a new MonthlyDiscountInfo for that month
+    if (!this->discountTracker.count(currentMonth)) {
+        this->discountTracker[currentMonth] = MonthlyDiscountInfo(this->maxMonthlyDiscount);
+    }
+
     MonthlyDiscountInfo &info = this->discountTracker[currentMonth];
 
     ShippingOption shippingOption = transaction.getShippingOption();
-    double discount = calcDiscountBasedOnSize(shippingOption, info);
+    info.incrementMonthlyCounters(shippingOption.getSize(), shippingOption.getProvider());
 
-    if (isDiscountCapReached(info)) {
-        discount = this->maxMonthlyDiscount - info.usedDiscount;
-    } else {
-        info.usedDiscount += discount;
-    }
+    double discount = calcDiscountBasedOnSize(shippingOption, info);
+    applyDiscountToAvailableAmount(info, discount);
+
     return discount;
+}
+void DiscountService::applyDiscountToAvailableAmount(MonthlyDiscountInfo &info, double &discount) {
+    double availableDiscount = info.getAvailableDiscount();
+
+    if (discount > availableDiscount) {
+        discount = availableDiscount;
+        info.setAvailableDiscount(0.0);
+    } else {
+        info.decreaseAvailableDiscount(discount);
+    }
 }
 
 double DiscountService::calcDiscountBasedOnSize(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
     switch (shippingOption.getSize()) {
         case PackageSize::S:
-            return this->calcDiscountForSmallPackage(shippingOption, info);
+            return this->calcDiscountForSmallPackage(shippingOption);
         case PackageSize::L:
-            return this->calcDiscountForLargePackage(shippingOption, info);
+            return calcDiscountForLargePackage(shippingOption, info);
         default:
             return 0.0;
     }
 }
 
-double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
+double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOption) const {
     if (shippingOption.getSize() == PackageSize::S) {
-        info.sizesCount[shippingOption.getSize()]++;
         if (shippingOption.getPrice() >= this->minSmallPackagePrice) {
             return shippingOption.getPrice() - this->minSmallPackagePrice;
         }
@@ -40,31 +55,16 @@ double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOpti
 }
 
 double DiscountService::calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
-    if (shippingOption.getSize() == PackageSize::L) {
-        info.sizesCount[shippingOption.getSize()]++;
-        if (isFreeLargePackage(shippingOption, info)) {
-            return shippingOption.getPrice();
-        }
+    if (shippingOption.getSize() == PackageSize::L && info.getLargeLpPackagesCount() == 3) {
+        return shippingOption.getPrice();
     }
     return 0.0;
-}
-
-bool DiscountService::isFreeLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
-    // check if the package is large and the provider is LP
-    if (shippingOption.getSize() == PackageSize::L && shippingOption.getProvider() == Provider::LP) {
-        // check if there have been already 2 transactions with LP large package in the month of the current transaction
-        // if so, return true else return false
-        if (info.sizesCount[PackageSize::L] == 2) {
-            return true;
-        }
-    }
-    return false;
 }
 
 void DiscountService::applyDiscountToTransaction(Transaction &transaction, double discount) {
     transaction.updateShippingPrice(transaction.getShippingOption().getPrice() - discount);
 }
 
-bool DiscountService::isDiscountCapReached(MonthlyDiscountInfo &info) {
-    return info.usedDiscount >= this->maxMonthlyDiscount;
+void DiscountService::setMinSmallPackagePrice(double minSmallPackagePrice) {
+    this->minSmallPackagePrice = minSmallPackagePrice;
 }
