@@ -64,6 +64,7 @@ public:
      */
     static void applyDiscountToTransaction(Transaction &transaction, double discount);
 
+    // getters and setters
     void setMinSmallPackagePrice(double minSmallPackagePrice);
 };
 

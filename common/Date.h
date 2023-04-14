@@ -20,6 +20,10 @@ public:
      */
     Date(int day, int month, int year);
 
+    /**
+     * @brief Returns month and year in format MM-YYYY
+     * @return month and year in format MM-YYYY
+     */
     std::string getMonthYear() const;
 
     // Getters and setters

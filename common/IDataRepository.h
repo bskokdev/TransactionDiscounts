@@ -34,7 +34,6 @@ public:
      * @brief Update the given item in the repository
      * @param item
      */
-
     virtual void update(const T &item) = 0;
 
     /**
