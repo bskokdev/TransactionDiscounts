@@ -7,32 +7,33 @@
 
 class MonthlyDiscountInfo {
 private:
-    double usedDiscount;
-    std::map<PackageSize, int> sizesCount;
-    std::map<Provider, int> providersCount;
+    double availableDiscount;
+    int largeLpPackagesCount;
 public:
     // default constructor
     MonthlyDiscountInfo();
 
-    double getUsedDiscount() const;
+    explicit MonthlyDiscountInfo(double availableDiscount);
 
-    void setUsedDiscount(double discount);
+    double getAvailableDiscount() const;
 
-    int getSizesCount(PackageSize size) const;
+    void setAvailableDiscount(double availableDiscount);
 
-    int getProvidersCount(Provider provider) const;
+    int getLargeLpPackagesCount() const;
 
     /**
      * Increments count of packages with given size
      * @param size Package size to increment count for
+     * @param provider Provider of package
      */
-    void incrementSizesCount(PackageSize size);
+    void incrementMonthlyCounters(PackageSize size, Provider provider);
 
     /**
-     * Increments count of packages with given provider
-     * @param provider Provider to increment count for
+     * Decreases available discount by given amount
+     * @param discount
      */
-    void incrementProvidersCount(Provider provider);
+    void decreaseAvailableDiscount(double discount);
+
 };
 
 #endif //TRANSACTIONDISCOUNTS_MONTHLYDISCOUNTINFO_H
