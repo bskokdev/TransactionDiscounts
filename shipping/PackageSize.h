@@ -9,7 +9,8 @@
 enum class PackageSize {
     S,
     M,
-    L
+    L,
+    EnumSize // size of enum for iteration purposes
 };
 
 /**

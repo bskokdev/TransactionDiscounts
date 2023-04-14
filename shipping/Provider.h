@@ -8,7 +8,8 @@
  */
 enum class Provider {
     LP,
-    MR
+    MR,
+    EnumSize // for iterating over enum
 };
 
 /**
