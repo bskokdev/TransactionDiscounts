@@ -8,6 +8,7 @@
 #include <iostream>
 #include "io/Reader.h"
 #include "transaction/Transaction.h"
+#include "discount/DiscountService.h"
 
 /**
  * @brief Class representing the application
@@ -15,19 +16,20 @@
 class Application {
 private:
     ShippingOptionRepository &shippingRepo;
+    DiscountService &discountService;
 
     /**
      * @brief Read input file path from user
      * @return input file path
      */
-    std::string readInputFilePath();
+    static std::string readInputFilePath();
 
     /**
      * @brief Read input file to vector of strings
      * @param inputFilePath file path
      * @return vector of lines
      */
-    std::vector<std::string> readInputFile(std::string &inputFilePath);
+    static std::vector<std::string> readInputFile(std::string &inputFilePath);
 
     /**
      * @brief Create a Transaction object from an input line
@@ -48,15 +50,16 @@ private:
      * @param transaction Transaction object
      * @param discount discount
      */
-    void printTransactionAndDiscount(Transaction &transaction, double discount);
+    static void printTransactionAndDiscount(Transaction &transaction, double discount);
 
 public:
     /**
      * @brief Constructor with dependencies
      * @details The dependencies are injected via constructor
      * @param shippingRepo ShippingOptionRepository instance
+     * @param discountService DiscountService instance
      */
-    Application(ShippingOptionRepository &shippingRepo);
+    Application(ShippingOptionRepository &shippingRepo, DiscountService &discountService);
 
     /**
      * @brief Run the application

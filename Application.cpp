@@ -2,7 +2,8 @@
 #include "Application.h"
 #include "discount/DiscountService.h"
 
-Application::Application(ShippingOptionRepository &shippingRepo) : shippingRepo(shippingRepo) {}
+Application::Application(ShippingOptionRepository &shippingRepo, DiscountService &discountService)
+    : shippingRepo(shippingRepo), discountService(discountService) {}
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.
@@ -13,6 +14,9 @@ void Application::initialize() {
     this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::S, 2.00));
     this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::M, 3.00));
     this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::L, 4.00));
+
+    double minSmallPackagePrice = this->shippingRepo.findLowestPriceForSize(PackageSize::S);
+    this->discountService.setMinSmallPackagePrice(minSmallPackagePrice);
 }
 
 std::string Application::readInputFilePath() {
@@ -34,7 +38,7 @@ Transaction Application::createTransaction(std::string &line) {
     // todo: validation!
     std::string provider = transactionTokens[2];
     std::string packageSize = transactionTokens[1];
-    ShippingOption shippingOption = shippingRepo.findFromString(provider, packageSize);
+    ShippingOption shippingOption = this->shippingRepo.findFromString(provider, packageSize);
 
     // Split the date into tokens (year, month, day) & create a Date object
     std::vector<std::string> dateTokens = reader.tokenize(transactionTokens[0], '-');
@@ -49,11 +53,10 @@ Transaction Application::createTransaction(std::string &line) {
 }
 
 double Application::applyDiscount(Transaction &transaction) {
-    double lowestPriceForSmallPackage = shippingRepo.findLowestPriceForPackageSize(PackageSize::S);
-    DiscountService discountService(lowestPriceForSmallPackage, 10);
+    double lowestPriceForSmallPackage = this->shippingRepo.findLowestPriceForSize(PackageSize::S);
 
-    double discount = discountService.calcDiscountForTransaction(transaction);
-    discountService.applyDiscountToTransaction(transaction, discount);
+    double discount = this->discountService.calcDiscountForTransaction(transaction);
+    DiscountService::applyDiscountToTransaction(transaction, discount);
 
     return discount;
 }
