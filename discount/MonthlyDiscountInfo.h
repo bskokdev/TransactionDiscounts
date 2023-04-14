@@ -15,12 +15,6 @@ public:
 
     explicit MonthlyDiscountInfo(double availableDiscount);
 
-    double getAvailableDiscount() const;
-
-    void setAvailableDiscount(double availableDiscount);
-
-    int getLargeLpPackagesCount() const;
-
     /**
      * Increments count of packages with given size
      * @param size Package size to increment count for
@@ -33,6 +27,14 @@ public:
      * @param discount
      */
     void decreaseAvailableDiscount(double discount);
+
+    // getters and setters
+    double getAvailableDiscount() const;
+
+    void setAvailableDiscount(double availableDiscount);
+
+    int getLargeLpPackagesCount() const;
+
 
 };
 
