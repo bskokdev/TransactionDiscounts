@@ -31,7 +31,7 @@ std::vector<std::string> Application::readInputFile(std::string &inputFilePath) 
     return reader.readLines();
 }
 
-Transaction Application::createTransaction(std::string &line) {
+Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
     Reader reader;
     // split the line into tokens (date, provider, package size)
     std::vector<std::string> transactionTokens = reader.tokenize(line, ' ');
@@ -49,7 +49,7 @@ Transaction Application::createTransaction(std::string &line) {
     Date date = Date(day, month, year);
 
     // create a transaction object
-    return Transaction(date, shippingOption);
+    return {date, shippingOption};
 }
 
 double Application::applyDiscount(Transaction &transaction) {
@@ -83,7 +83,7 @@ void Application::run() {
     // todo: validation!
     // do this for valid lines
     for (auto &line: lines) {
-        Transaction transaction = createTransaction(line);
+        Transaction transaction = buildTransactionFromUserInputLine(line);
         double discount = applyDiscount(transaction);
         printTransactionAndDiscount(transaction, discount);
         // we could also save the discounted transaction to a database here
