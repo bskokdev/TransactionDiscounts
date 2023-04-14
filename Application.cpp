@@ -53,8 +53,6 @@ Transaction Application::createTransaction(std::string &line) {
 }
 
 double Application::applyDiscount(Transaction &transaction) {
-    double lowestPriceForSmallPackage = this->shippingRepo.findLowestPriceForSize(PackageSize::S);
-
     double discount = this->discountService.calcDiscountForTransaction(transaction);
     DiscountService::applyDiscountToTransaction(transaction, discount);
 
