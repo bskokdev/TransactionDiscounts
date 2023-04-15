@@ -35,12 +35,22 @@ std::vector<std::string> Application::readInputFile(std::string &inputFilePath) 
     return reader.readLines();
 }
 
+void handleInvalidTransactionInput(std::vector<std::string> lineTokens) {
+    for(auto &token: lineTokens) {
+        std::cout << token << " ";
+    }
+    std::cout << "ignored" << std::endl;
+}
+
 Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
     // split the line into tokens (date, provider, package size)
     std::vector<std::string> transactionTokens = Reader::tokenize(line, ' ');
 
-    // todo: validate tokens
-    this->transactionValidator.areValid(transactionTokens);
+    // validation
+    if(!this->transactionValidator.areValid(transactionTokens)) {
+        handleInvalidTransactionInput(transactionTokens);
+        return Transaction();
+    }
 
     std::string provider = transactionTokens[2];
     std::string packageSize = transactionTokens[1];
@@ -80,10 +90,12 @@ void Application::run() {
     // read the input file
     std::vector<std::string> lines = this->readInputFile(path);
 
-    // todo: validation!
-    // do this for valid lines
     for (auto &line: lines) {
         Transaction transaction = buildTransactionFromUserInputLine(line);
+        // if the transaction is invalid, skip it
+        if(transaction.isEmpty()) {
+            continue;
+        }
         double discount = applyDiscount(transaction);
         printTransactionAndDiscount(transaction, discount);
         // we could also save the discounted transaction to a database here
