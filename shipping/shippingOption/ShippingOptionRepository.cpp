@@ -46,7 +46,7 @@ ShippingOption ShippingOptionRepository::findFromString(const std::string &provi
 
 ShippingOption ShippingOptionRepository::findFromProviderAndPackageSize(Provider provider, PackageSize packageSize) {
     ShippingKey key = ShippingKey(provider, packageSize);
-    if(this->shippingOptions.count(key)) {
+    if (this->shippingOptions.count(key)) {
         return this->shippingOptions[key];
     }
     throw std::invalid_argument("No shipping option found");

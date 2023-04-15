@@ -24,6 +24,7 @@ double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
 
     return discount;
 }
+
 void DiscountService::applyDiscountToAvailableAmount(MonthlyDiscountInfo &info, double &discount) {
     double availableDiscount = info.getAvailableDiscount();
 

@@ -3,7 +3,7 @@
 MonthlyDiscountInfo::MonthlyDiscountInfo() : availableDiscount(0), largeLpPackagesCount(0) {}
 
 MonthlyDiscountInfo::MonthlyDiscountInfo(double availableDiscount)
-    : availableDiscount(availableDiscount), largeLpPackagesCount(0) {
+        : availableDiscount(availableDiscount), largeLpPackagesCount(0) {
 }
 
 void MonthlyDiscountInfo::incrementMonthlyCounters(PackageSize size, Provider provider) {

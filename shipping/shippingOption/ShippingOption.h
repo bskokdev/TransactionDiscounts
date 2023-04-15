@@ -19,6 +19,7 @@ private:
     double price;
 public:
     ShippingOption() = default;
+
     /**
      * @brief Constructor for ShippingOption
      * @param provider The provider of the shipping option

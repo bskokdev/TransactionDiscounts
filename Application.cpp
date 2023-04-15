@@ -3,7 +3,7 @@
 #include "discount/DiscountService.h"
 
 Application::Application(ShippingOptionRepository &shippingRepo, DiscountService &discountService)
-    : shippingRepo(shippingRepo), discountService(discountService) {}
+        : shippingRepo(shippingRepo), discountService(discountService) {}
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.

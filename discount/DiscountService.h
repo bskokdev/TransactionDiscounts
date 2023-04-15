@@ -38,7 +38,7 @@ private:
      * @param info Monthly discount info
      * @return discount
      */
-    static double calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) ;
+    static double calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
 
     /**
      * @brief Applies discount to available amount
