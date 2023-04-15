@@ -24,6 +24,8 @@ public:
      */
     Transaction(const Date &date, const ShippingOption &shippingOption);
 
+    bool isEmpty();
+
     // Getters and setters
     const Date &getDate() const;
 

@@ -50,3 +50,10 @@ std::ostream &operator<<(std::ostream &os, Transaction &transaction) {
     os << transaction.getDate() << " " << transaction.getShippingOption() << " ";
     return os;
 }
+
+bool Transaction::isEmpty() {
+    Date emptyDate;
+    ShippingOption emptyShippingOption;
+
+    return date == emptyDate && shippingOption == emptyShippingOption;
+}
