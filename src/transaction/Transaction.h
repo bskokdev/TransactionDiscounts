@@ -31,7 +31,7 @@ public:
 
     void setDate(const Date &date);
 
-    const ShippingOption getShippingOption();
+    ShippingOption getShippingOption();
 
     void updateShippingPrice(double newPrice);
 
