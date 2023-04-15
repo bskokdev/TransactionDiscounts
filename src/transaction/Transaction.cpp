@@ -1,5 +1,7 @@
 #include "Transaction.h"
 
+Transaction::Transaction() : date(Date()), shippingOption(ShippingOption()) {}
+
 Transaction::Transaction(const Date &date, const ShippingOption &shippingOption) : date(date),
                                                                                    shippingOption(shippingOption) {}
 

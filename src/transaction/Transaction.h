@@ -16,7 +16,7 @@ public:
     /**
      * @brief Default constructor for Transaction
      */
-    Transaction() = default;
+    Transaction();
     /**
      * @brief Constructor for Transaction
      * @param date date of the transaction
