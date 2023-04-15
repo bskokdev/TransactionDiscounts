@@ -38,6 +38,7 @@ private:
     /**
      * @brief Create a Transaction object from an input line
      * @param line input line
+     * @details has a side-effect of printing the invalid input line
      * @return Transaction object
      */
     Transaction buildTransactionFromUserInputLine(std::string &line);
