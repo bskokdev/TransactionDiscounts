@@ -28,7 +28,9 @@ private:
      * @brief Read input file to vector of strings
      * @param inputFilePath file path
      * @return vector of lines
+     * @deprecated This method will not used anymore
      */
+     // todo: remove this method & move file path to arguments in main()
     static std::vector<std::string> readInputFile(std::string &inputFilePath);
 
     /**
@@ -56,7 +58,7 @@ public:
     /**
      * @brief Default constructor
      */
-    Application() = default;
+    Application() = delete;
 
     /**
      * @brief Constructor with dependencies
