@@ -1,7 +1,4 @@
-# CMake version
 cmake_minimum_required(VERSION 3.25)
-
-# Project name and version
 project(TransactionDiscounts VERSION 1.0)
 
 # C++ standard
@@ -22,15 +19,28 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Adding source files
+# Adding source files from src directory
 file(GLOB_RECURSE SOURCES "*.cpp")
 list(FILTER SOURCES EXCLUDE REGEX "CMakeFiles")
-
-enable_testing()
 
 # Adding executable
 add_executable(TransactionDiscounts ${SOURCES})
 
-# Adding Google Test library
+# Adding Google Test library to the project
 target_link_libraries(TransactionDiscounts gtest_main)
-#add_test(NAME tests/test_example COMMAND TransactionDiscounts)
+
+# Adding tests
+enable_testing()
+
+add_executable(
+        test_example
+        tests/test_example.cpp
+)
+
+target_link_libraries(
+        test_example
+        GTest::gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(test_example)
