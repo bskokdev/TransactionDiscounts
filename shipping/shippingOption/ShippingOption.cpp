@@ -1,8 +1,10 @@
 #include <iomanip>
 #include "ShippingOption.h"
 
-ShippingOption::ShippingOption(Provider provider, PackageSize size, double price) : provider(provider), size(size),
-                                                                                    price(price) {}
+ShippingOption::ShippingOption() : empty(true) {}
+
+ShippingOption::ShippingOption(Provider provider, PackageSize size, double price)
+    : provider(provider), size(size), price(price) {}
 
 Provider ShippingOption::getProvider() const {
     return provider;
@@ -57,3 +59,8 @@ std::ostream &operator<<(std::ostream &os, const ShippingOption &option) {
        << std::fixed << std::setprecision(2) << option.getPrice();
     return os;
 }
+
+bool ShippingOption::isEmpty() const {
+    return empty;
+}
+

@@ -17,12 +17,12 @@ private:
     Provider provider;
     PackageSize size;
     double price;
+    bool empty;
 public:
     /**
      * @brief Default constructor for ShippingOption
      */
-    ShippingOption() = default;
-
+    ShippingOption();
     /**
      * @brief Constructor for ShippingOption
      * @param provider The provider of the shipping option
@@ -30,6 +30,12 @@ public:
      * @param price The price of the shipping option
      */
     ShippingOption(Provider provider, PackageSize size, double price);
+
+    /**
+     * @brief Checks if the shipping option is empty
+     * @return true if the shipping option is empty
+     */
+    bool isEmpty() const;
 
     // getters and setters
     Provider getProvider() const;
