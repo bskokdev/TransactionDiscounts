@@ -3,40 +3,37 @@
 ShippingOptionRepository::ShippingOptionRepository() {}
 
 bool ShippingOptionRepository::exists(const ShippingOption &shippingOption) {
-    for (auto &option: this->shippingOptions) {
-        if (option == shippingOption) {
-            return true;
-        }
-    }
-    return false;
+    return this->shippingOptions.count({shippingOption.getProvider(), shippingOption.getSize()});
 }
 
 void ShippingOptionRepository::add(const ShippingOption &shippingOption) {
-    // set does not allow duplicates -> no need to check if exists
-    this->shippingOptions.push_back(shippingOption);
+    // add the shipping option to the map
+    ShippingKey key = ShippingKey(shippingOption.getProvider(), shippingOption.getSize());
+    this->shippingOptions[key] = shippingOption;
 }
 
 void ShippingOptionRepository::remove(const ShippingOption &shippingOption) {
     if (this->exists(shippingOption)) {
-        // find the shipping option and remove it using the iterator
-        auto it = std::find(this->shippingOptions.begin(), this->shippingOptions.end(), shippingOption);
-        this->shippingOptions.erase(it);
+        // remove the shipping option from the map
+        this->shippingOptions.erase({shippingOption.getProvider(), shippingOption.getSize()});
+    } else {
+        throw std::invalid_argument("Shipping option does not exist");
     }
 }
 
 void ShippingOptionRepository::update(const ShippingOption &shippingOption) {
-    // find the shipping option and overwrite it
-    if (this->exists(shippingOption)) {
-        for (auto &option: this->shippingOptions) {
-            if (option == shippingOption) {
-                option = shippingOption;
-            }
-        }
-    }
+    // find the shipping option and overwrite it via key
+    ShippingKey key = ShippingKey(shippingOption.getProvider(), shippingOption.getSize());
+    this->shippingOptions[key] = shippingOption;
 }
 
 std::vector<ShippingOption> ShippingOptionRepository::getAll() {
-    return this->shippingOptions;
+    // convert the map to a vector
+    std::vector<ShippingOption> options;
+    for (auto &[key, option]: this->shippingOptions) {
+        options.push_back(option);
+    }
+    return options;
 }
 
 ShippingOption ShippingOptionRepository::findFromString(const std::string &provider, const std::string &packageSize) {
@@ -48,17 +45,16 @@ ShippingOption ShippingOptionRepository::findFromString(const std::string &provi
 }
 
 ShippingOption ShippingOptionRepository::findFromProviderAndPackageSize(Provider provider, PackageSize packageSize) {
-    for (auto &option: this->shippingOptions) {
-        if (option.getProvider() == provider && option.getSize() == packageSize) {
-            return option;
-        }
+    ShippingKey key = ShippingKey(provider, packageSize);
+    if(this->shippingOptions.count(key)) {
+        return this->shippingOptions[key];
     }
     throw std::invalid_argument("No shipping option found");
 }
 
 double ShippingOptionRepository::findLowestPriceForSize(PackageSize packageSize) {
     double lowestPrice = INT_MAX;
-    for (auto &option: this->shippingOptions) {
+    for (auto &[key, option]: this->shippingOptions) {
         if (option.getSize() == packageSize) {
             if (option.getPrice() < lowestPrice) {
                 lowestPrice = option.getPrice();

@@ -5,14 +5,14 @@
 #include <stdexcept>
 #include "ShippingOption.h"
 #include "../../common/IDataRepository.h"
-#include "ShippingOptionHash.h"
+#include "ShippingKey.h"
 
 /**
  * @brief Class representing a repository for shipping options
  */
 class ShippingOptionRepository : public IDataRepository<ShippingOption> {
 private:
-    std::vector<ShippingOption> shippingOptions;
+    std::unordered_map<ShippingKey, ShippingOption, ShippingKeyHash> shippingOptions;
 public:
     // constructor
     ShippingOptionRepository();
