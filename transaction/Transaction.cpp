@@ -52,8 +52,5 @@ std::ostream &operator<<(std::ostream &os, Transaction &transaction) {
 }
 
 bool Transaction::isEmpty() {
-    Date emptyDate;
-    ShippingOption emptyShippingOption;
-
-    return date == emptyDate && shippingOption == emptyShippingOption;
+    return this->date == Date() && this->shippingOption.isEmpty();
 }
