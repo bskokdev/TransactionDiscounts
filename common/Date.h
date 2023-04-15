@@ -36,11 +36,20 @@ public:
     std::string getMonthYear() const;
 
     /**
-     * @brief Build a Date object from a string (format: DD-MM-YYYY)
+     * @brief Build a Date object from a string (format: YYYY-MM-DD)
      * @param dateString string to be converted to Date
      * @return Date object
      */
     static Date buildDateFromString(std::string &dateString);
+
+    /**
+     * @brief Checks if a string is a valid date
+     * @param dateString string to be checked (format: YYYY-MM-DD)
+     * @return true if string is a valid date
+     */
+    static bool isStringValidDate(std::string &dateString);
+
+    static bool isLeapYear(int &year);
 
     // Getters and setters
     int getDay() const;

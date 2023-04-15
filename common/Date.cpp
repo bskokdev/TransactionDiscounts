@@ -48,3 +48,39 @@ Date Date::buildDateFromString(std::string &dateString) {
 
     return {day, month, year};
 }
+
+bool Date::isStringValidDate(std::string &dateString) {
+    std::vector<std::string> dateTokens = Reader::tokenize(dateString, '-');
+
+    if (dateTokens.size() != 3) return false;
+
+    int year = std::stoi(dateTokens[0]);
+    int month = std::stoi(dateTokens[1]);
+    int day = std::stoi(dateTokens[2]);
+
+    if (year < 1900 || year > 2100) {
+        return false;
+    }
+
+    if (month < 1 || month > 12) {
+        return false;
+    }
+
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (isLeapYear(year)) {
+        daysInMonth[1] = 29;
+    }
+
+    if (day < 1 || day > daysInMonth[month - 1]) {
+        return false;
+    }
+
+    return true;
+}
+
+bool Date::isLeapYear(int &year){
+    if((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        return true;
+    }
+    return false;
+}
