@@ -1,5 +1,5 @@
 #include "TransactionValidator.h"
 
-bool TransactionValidator::isValid(std::string attributes) {
+bool TransactionValidator::isValid(std::vector<std::string> attributes) {
     //Todo: implement
 }
