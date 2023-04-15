@@ -11,6 +11,9 @@
  */
 class TransactionValidator : public IAttributeValidator {
 public:
+    /**
+     * @see IAttributeValidator::isValid
+     */
     bool isValid(std::vector<std::string> attributes) override;
 };
 
