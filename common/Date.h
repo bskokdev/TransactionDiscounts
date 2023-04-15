@@ -66,6 +66,10 @@ public:
 
     // operators
     friend std::ostream &operator<<(std::ostream &os, const Date &date);
+
+    bool operator==(const Date &other) const;
+
+    bool operator!=(const Date &other) const;
 };
 
 
