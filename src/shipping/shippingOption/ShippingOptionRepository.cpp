@@ -27,7 +27,7 @@ void ShippingOptionRepository::update(const ShippingOption &shippingOption) {
 
 std::vector<ShippingOption> ShippingOptionRepository::getAll() {
     // convert the map to a vector
-    std::vector<ShippingOption> options;
+    std::vector<ShippingOption> options(this->shippingOptions.size());
     for (auto &[key, option]: this->shippingOptions) {
         options.push_back(option);
     }
