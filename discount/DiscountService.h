@@ -48,6 +48,15 @@ private:
     static void applyDiscountToAvailableAmount(MonthlyDiscountInfo &info, double &discount);
 
 public:
+    /**
+     * @brief Default constructor for DiscountService
+     */
+    DiscountService() = default;
+
+    /**
+     * @brief Constructor for DiscountService
+     * @param maxMonthlyDiscount maximum monthly discount
+     */
     explicit DiscountService(double maxMonthlyDiscount);
 
     /**

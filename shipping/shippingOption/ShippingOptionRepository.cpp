@@ -1,7 +1,5 @@
 #include "ShippingOptionRepository.h"
 
-ShippingOptionRepository::ShippingOptionRepository() {}
-
 bool ShippingOptionRepository::exists(const ShippingOption &shippingOption) {
     return this->shippingOptions.count({shippingOption.getProvider(), shippingOption.getSize()});
 }

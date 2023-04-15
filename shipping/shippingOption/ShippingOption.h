@@ -18,6 +18,9 @@ private:
     PackageSize size;
     double price;
 public:
+    /**
+     * @brief Default constructor for ShippingOption
+     */
     ShippingOption() = default;
 
     /**

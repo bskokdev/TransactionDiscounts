@@ -12,10 +12,16 @@ private:
     int month;
     int year;
 public:
+
+    /**
+     * @brief Default constructor for Date
+     */
+    Date() = default;
+
     /**
      * @brief Constructor for Date
-     * @param day
-     * @param month
+     * @param day day of the month
+     * @param month month of the year
      * @param year
      */
     Date(int day, int month, int year);

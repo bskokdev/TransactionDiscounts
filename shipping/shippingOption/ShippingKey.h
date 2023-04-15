@@ -15,9 +15,16 @@ private:
     PackageSize size;
 
 public:
-    // Constructors
+    /**
+     * @brief Default constructor for the ShippingKey class
+     */
     ShippingKey() = default;
 
+    /**
+     * @brief Constructor for the ShippingKey class
+     * @param provider Provider of the shipping option
+     * @param size Package size of the shipping option
+     */
     ShippingKey(Provider provider, PackageSize size);
 
     // getters and setters

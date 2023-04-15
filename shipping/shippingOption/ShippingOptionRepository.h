@@ -14,8 +14,10 @@ class ShippingOptionRepository : public IDataRepository<ShippingOption> {
 private:
     std::unordered_map<ShippingKey, ShippingOption, ShippingKeyHash> shippingOptions;
 public:
-    // constructor
-    ShippingOptionRepository();
+    /**
+     * @brief Default constructor
+     */
+    ShippingOptionRepository() = default;
 
     /**
      * @brief Finds a shipping option from a given provider and package size as strings

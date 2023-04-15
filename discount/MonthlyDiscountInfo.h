@@ -13,9 +13,15 @@ private:
     double availableDiscount;
     int largeLpPackagesCount;
 public:
-    // default constructor
+    /**
+     * @brief Default constructor for MonthlyDiscountInfo
+     */
     MonthlyDiscountInfo();
 
+    /**
+     * @brief Constructor for MonthlyDiscountInfo
+     * @param availableDiscount available discount
+     */
     explicit MonthlyDiscountInfo(double availableDiscount);
 
     /**

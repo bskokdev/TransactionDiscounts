@@ -14,6 +14,10 @@ private:
     ShippingOption shippingOption;
 public:
     /**
+     * @brief Default constructor for Transaction
+     */
+    Transaction() = default;
+    /**
      * @brief Constructor for Transaction
      * @param date date of the transaction
      * @param shippingOption shipping option of the transaction

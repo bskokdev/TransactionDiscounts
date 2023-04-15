@@ -54,6 +54,11 @@ private:
 
 public:
     /**
+     * @brief Default constructor
+     */
+    Application() = default;
+
+    /**
      * @brief Constructor with dependencies
      * @details The dependencies are injected via constructor
      * @param shippingRepo ShippingOptionRepository instance
