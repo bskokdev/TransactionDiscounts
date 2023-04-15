@@ -8,7 +8,7 @@ project(TransactionDiscounts VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 
 # Including directories
-include_directories(src/common src/discount src/io src/shipping src/shipping/shippingOption src/transaction src/validation)
+include_directories(src)
 
 # Fetching Google Test
 include(FetchContent)
