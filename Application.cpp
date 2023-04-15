@@ -2,8 +2,12 @@
 #include "Application.h"
 #include "discount/DiscountService.h"
 
-Application::Application(ShippingOptionRepository &shippingRepo, DiscountService &discountService)
-        : shippingRepo(shippingRepo), discountService(discountService) {}
+Application::Application(ShippingOptionRepository &shippingRepo,
+                         DiscountService &discountService,
+                         TransactionValidator &transactionValidator)
+        : shippingRepo(shippingRepo),
+        discountService(discountService),
+        transactionValidator(transactionValidator) {}
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.
@@ -36,6 +40,7 @@ Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
     std::vector<std::string> transactionTokens = Reader::tokenize(line, ' ');
 
     // todo: validate tokens
+
     std::string provider = transactionTokens[2];
     std::string packageSize = transactionTokens[1];
     ShippingOption shippingOption = this->shippingRepo.findFromString(provider, packageSize);

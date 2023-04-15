@@ -9,6 +9,7 @@
 #include "io/Reader.h"
 #include "transaction/Transaction.h"
 #include "discount/DiscountService.h"
+#include "validation/TransactionValidator.h"
 
 /**
  * @brief Class representing the application
@@ -16,6 +17,7 @@
 class Application {
 private:
     ShippingOptionRepository &shippingRepo;
+    TransactionValidator &transactionValidator;
     DiscountService &discountService;
 
     /**
@@ -66,7 +68,9 @@ public:
      * @param shippingRepo ShippingOptionRepository instance
      * @param discountService DiscountService instance
      */
-    Application(ShippingOptionRepository &shippingRepo, DiscountService &discountService);
+    Application(ShippingOptionRepository &shippingRepo,
+                DiscountService &discountService,
+                TransactionValidator &transactionValidator);
 
     /**
      * @brief Run the application
