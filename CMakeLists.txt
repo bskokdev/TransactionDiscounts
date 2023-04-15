@@ -21,9 +21,11 @@ FetchContent_MakeAvailable(googletest)
 
 # Adding source files from src directory
 file(GLOB_RECURSE SOURCES "*.cpp")
+
+# Removing CMakeFiles from the list of source files
 list(FILTER SOURCES EXCLUDE REGEX "CMakeFiles")
 
-# Adding executable
+# Adding executable of the project
 add_executable(TransactionDiscounts ${SOURCES})
 
 # Adding Google Test library to the project
@@ -32,15 +34,18 @@ target_link_libraries(TransactionDiscounts gtest_main)
 # Adding tests
 enable_testing()
 
+# Creating test executables
 add_executable(
         test_example
         tests/test_example.cpp
 )
 
+# Linking Google Test library to the test executables
 target_link_libraries(
         test_example
         GTest::gtest_main
 )
 
+# Adding tests to CTest
 include(GoogleTest)
 gtest_discover_tests(test_example)
