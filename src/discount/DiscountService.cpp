@@ -70,3 +70,5 @@ void DiscountService::applyDiscountToTransaction(Transaction &transaction, doubl
 void DiscountService::setMinSmallPackagePrice(double minSmallPackagePrice) {
     this->minSmallPackagePrice = minSmallPackagePrice;
 }
+
+DiscountService::DiscountService() : maxMonthlyDiscount(0.0), minSmallPackagePrice(INT_MAX) {}

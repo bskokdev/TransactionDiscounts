@@ -51,7 +51,7 @@ public:
     /**
      * @brief Default constructor for DiscountService
      */
-    DiscountService() = default;
+    DiscountService();
 
     /**
      * @brief Constructor for DiscountService
