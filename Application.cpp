@@ -40,6 +40,7 @@ Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
     std::vector<std::string> transactionTokens = Reader::tokenize(line, ' ');
 
     // todo: validate tokens
+    this->transactionValidator.areValid(transactionTokens);
 
     std::string provider = transactionTokens[2];
     std::string packageSize = transactionTokens[1];

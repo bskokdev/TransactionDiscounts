@@ -12,7 +12,7 @@ public:
      * @param attributes vector of strings to validate attributes within
      * @return true if the value is valid, false otherwise
      */
-    virtual bool isValid(std::vector<std::string> attributes) = 0;
+    virtual bool areValid(std::vector<std::string> attributes) = 0;
 };
 
 
