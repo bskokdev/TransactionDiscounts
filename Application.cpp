@@ -39,7 +39,7 @@ void handleInvalidTransactionInput(std::vector<std::string> lineTokens) {
     for(auto &token: lineTokens) {
         std::cout << token << " ";
     }
-    std::cout << "ignored" << std::endl;
+    std::cout << "Ignored" << std::endl;
 }
 
 Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
@@ -49,7 +49,7 @@ Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
     // validation
     if(!this->transactionValidator.areValid(transactionTokens)) {
         handleInvalidTransactionInput(transactionTokens);
-        return Transaction();
+        return {};
     }
 
     std::string provider = transactionTokens[2];
@@ -93,11 +93,10 @@ void Application::run() {
     for (auto &line: lines) {
         Transaction transaction = buildTransactionFromUserInputLine(line);
         // if the transaction is invalid, skip it
-        if(transaction.isEmpty()) {
-            continue;
+        if(!transaction.isEmpty()) {
+            double discount = applyDiscount(transaction);
+            printTransactionAndDiscount(transaction, discount);
+            // we could also save the discounted transaction to a database here
         }
-        double discount = applyDiscount(transaction);
-        printTransactionAndDiscount(transaction, discount);
-        // we could also save the discounted transaction to a database here
     }
 }
