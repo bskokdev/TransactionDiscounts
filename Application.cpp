@@ -32,16 +32,15 @@ std::vector<std::string> Application::readInputFile(std::string &inputFilePath) 
 }
 
 Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
-    Reader reader;
     // split the line into tokens (date, provider, package size)
-    std::vector<std::string> transactionTokens = reader.tokenize(line, ' ');
+    std::vector<std::string> transactionTokens = Reader::tokenize(line, ' ');
     // todo: validation!
     std::string provider = transactionTokens[2];
     std::string packageSize = transactionTokens[1];
     ShippingOption shippingOption = this->shippingRepo.findFromString(provider, packageSize);
 
     // Split the date into tokens (year, month, day) & create a Date object
-    std::vector<std::string> dateTokens = reader.tokenize(transactionTokens[0], '-');
+    std::vector<std::string> dateTokens = Reader::tokenize(transactionTokens[0], '-');
     int year = std::stoi(dateTokens[0]);
     int month = std::stoi(dateTokens[1]);
     int day = std::stoi(dateTokens[2]);

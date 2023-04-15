@@ -13,13 +13,13 @@ class Reader {
 private:
     std::string filePath;
 public:
-    Reader();
+    Reader() = default;
 
     /**
      * @brief Construct a new Reader object
      * @param filePath
      */
-    explicit Reader(const std::string &filePath);
+    explicit Reader(std::string filePath);
 
     /**
      * @brief Read all lines from file and return them as a vector
@@ -33,7 +33,7 @@ public:
      * @param str String to tokenize
      * @return vector of tokens
      */
-    std::vector<std::string> tokenize(std::string &str, char delimiter);
+    static std::vector<std::string> tokenize(std::string &str, char delimiter);
 };
 
 
