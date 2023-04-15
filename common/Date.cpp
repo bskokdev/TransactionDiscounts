@@ -58,22 +58,15 @@ bool Date::isStringValidDate(std::string &dateString) {
     int month = std::stoi(dateTokens[1]);
     int day = std::stoi(dateTokens[2]);
 
-    if (year < 1900 || year > 2100) {
-        return false;
-    }
-
-    if (month < 1 || month > 12) {
-        return false;
-    }
+    if (year < 1900 || year > 2100) return false;
+    if (month < 1 || month > 12) return false;
 
     int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     if (isLeapYear(year)) {
         daysInMonth[1] = 29;
     }
 
-    if (day < 1 || day > daysInMonth[month - 1]) {
-        return false;
-    }
+    if (day < 1 || day > daysInMonth[month - 1]) return false;
 
     return true;
 }
