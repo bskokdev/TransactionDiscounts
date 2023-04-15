@@ -2,6 +2,9 @@
 #define TRANSACTIONDISCOUNTS_DATE_H
 
 #include <ostream>
+#include <string>
+#include <vector>
+#include "../io/Reader.h"
 
 /**
  * @brief Class representing a date
@@ -31,6 +34,13 @@ public:
      * @return month and year in format MM-YYYY
      */
     std::string getMonthYear() const;
+
+    /**
+     * @brief Build a Date object from a string (format: DD-MM-YYYY)
+     * @param dateString string to be converted to Date
+     * @return Date object
+     */
+    static Date buildDateFromString(std::string &dateString);
 
     // Getters and setters
     int getDay() const;

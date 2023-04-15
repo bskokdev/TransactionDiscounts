@@ -38,3 +38,13 @@ std::ostream &operator<<(std::ostream &os, const Date &date) {
 std::string Date::getMonthYear() const {
     return std::to_string(this->month) + "-" + std::to_string(this->year);
 }
+
+Date Date::buildDateFromString(std::string &dateString) {
+    std::vector<std::string> dateTokens = Reader::tokenize(dateString, '-');
+
+    int year = std::stoi(dateTokens[0]);
+    int month = std::stoi(dateTokens[1]);
+    int day = std::stoi(dateTokens[2]);
+
+    return {day, month, year};
+}
