@@ -35,7 +35,7 @@ std::vector<std::string> Application::readInputFile(std::string &inputFilePath) 
     return reader.readLines();
 }
 
-void handleInvalidTransactionInput(std::vector<std::string> lineTokens) {
+void handleInvalidTransactionInput(const std::vector<std::string>& lineTokens) {
     for(auto &token: lineTokens) {
         std::cout << token << " ";
     }
