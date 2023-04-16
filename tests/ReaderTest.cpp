@@ -2,6 +2,11 @@
 #include "io/Reader.h"
 
 /**
+ * This is a test for the Reader class
+ * @see ../src/io/Reader.h
+ */
+
+/**
  * Check if the tokens are the same as the expected tokens
  * @param tokens split string
  * @param expected expected tokens
