@@ -45,3 +45,15 @@ TEST(ShippingRepositoryTest, FindShippingOptionFromString) {
     ASSERT_EQ(option2.getSize(), PackageSize::M);
     ASSERT_DOUBLE_EQ(option2.getPrice(), 3.00);
 }
+
+TEST(ShippingRepositoryTest, FindFromProviderAndPackageSize) {
+    ShippingOptionRepository repo = mockRepository();
+
+    ShippingOption option1 = repo.findFromProviderAndPackageSize(Provider::LP, PackageSize::S);
+    ShippingOption expectedOption1 = ShippingOption(Provider::LP, PackageSize::S, 1.50);
+    ASSERT_EQ(option1, expectedOption1);
+
+    ShippingOption option2 = repo.findFromProviderAndPackageSize(Provider::MR, PackageSize::M);
+    ShippingOption expectedOption2 = ShippingOption(Provider::MR, PackageSize::M, 3.00);
+    ASSERT_EQ(option2, expectedOption2);
+}
