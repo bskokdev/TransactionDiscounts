@@ -11,18 +11,20 @@ The discounts are applied to the transactions in the order they are provided in 
 
 ## Building the project
 
-1. Open a terminal and navigate to the project root directory.
-2. Create a build directory by running: `mkdir build` 
-3. navigate to the build directory using: `cd build`.
-4. Run CMake to generate the build files: `cmake ..` or `cmake -G "MinGW Makefiles" ..` (on Windows if using MinGW)
-5. Build the project: `make` or `cmake --build .`
-6. Run the tests: `make test` or `ctest`
+1. Clone the repository: `git clone https://github.com/skokcmd/TransactionDiscounts.git`
+2. Open a terminal and navigate to the project root directory.
+3. Create a build directory by running: `mkdir build` 
+4. navigate to the build directory using: `cd build`.
+5. Run CMake to generate the build files: `cmake ..` or `cmake -G "MinGW Makefiles" ..` (on Windows if using MinGW)
+6. Build the project: `make` or `cmake --build .`
+7. Run the tests: `ctest`
+8. Run the program: `./transaction_discounts` (or `./transaction_discounts.exe` on Windows)
 
 ## Running the Project
 
 After building the project, the `transaction_discounts` executable (or `transaction_discounts.exe` on Windows) will be created in the `build` directory.
 Run the executable to start the program. 
 
-`./transaction_discounts` - on Unix systems
+`./transaction_discounts` (Unix)
 
-`./transaction_discounts.exe` - on Windows
+`./transaction_discounts.exe` (Windows)
