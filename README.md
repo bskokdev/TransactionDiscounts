@@ -25,6 +25,8 @@ The discounts are applied to the transactions in the order they are provided in 
 After building the project, the `transaction_discounts` executable (or `transaction_discounts.exe` on Windows) will be created in the `build` directory.
 Run the executable to start the program. 
 
-`./transaction_discounts` (Unix)
+`./transaction_discounts ../input.txt` (Unix)
 
-`./transaction_discounts.exe` (Windows)
+`./transaction_discounts.exe ../input.txt` (Windows)
+
+The executable is run in the build directory, so the input file must be provided as a relative path from the build directory.
