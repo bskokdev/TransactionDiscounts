@@ -34,18 +34,17 @@ target_link_libraries(TransactionDiscounts gtest_main)
 # Adding tests
 enable_testing()
 
-# Creating test executables
-add_executable(
-        test_example
-        tests/test_example.cpp
-)
+# Detecting test files in the tests directory
+file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp")
 
-# Linking Google Test library to the test executables
-target_link_libraries(
-        test_example
-        GTest::gtest_main
-)
-
-# Adding tests to CTest
+# Include the GoogleTest module
 include(GoogleTest)
-gtest_discover_tests(test_example)
+
+# Adding test executables and linking Google Test library
+foreach(test_source ${TEST_SOURCES})
+    get_filename_component(test_name ${test_source} NAME_WE)
+    add_executable(${test_name} ${test_source})
+    target_link_libraries(${test_name} GTest::gtest_main)
+    gtest_discover_tests(${test_name})
+endforeach()
+
