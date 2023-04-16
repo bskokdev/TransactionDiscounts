@@ -19,17 +19,21 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Adding source files from src directory
-file(GLOB_RECURSE SOURCES "*.cpp")
+# Adding source files from src directory, excluding main.cpp and tests
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 
 # Removing CMakeFiles from the list of source files
 list(FILTER SOURCES EXCLUDE REGEX "CMakeFiles")
 
-# Adding executable of the project
-add_executable(TransactionDiscounts ${SOURCES})
+# Creating a library from the source files
+add_library(transaction_lib STATIC ${SOURCES})
 
-# Adding Google Test library to the project
-target_link_libraries(TransactionDiscounts gtest_main)
+# Adding executable of the project
+add_executable(TransactionDiscounts src/main.cpp)
+
+# Linking the library to the main executable
+target_link_libraries(TransactionDiscounts transaction_lib gtest_main)
 
 # Adding tests
 enable_testing()
@@ -40,11 +44,10 @@ file(GLOB_RECURSE TEST_SOURCES "tests/*.cpp")
 # Include the GoogleTest module
 include(GoogleTest)
 
-# Adding test executables and linking Google Test library
+# Adding test executables and linking the library and Google Test
 foreach(test_source ${TEST_SOURCES})
     get_filename_component(test_name ${test_source} NAME_WE)
     add_executable(${test_name} ${test_source})
-    target_link_libraries(${test_name} GTest::gtest_main)
+    target_link_libraries(${test_name} transaction_lib GTest::gtest_main)
     gtest_discover_tests(${test_name})
 endforeach()
-
