@@ -1,13 +1,16 @@
 #include <iomanip>
+#include <utility>
 #include "Application.h"
 #include "discount/DiscountService.h"
 
 Application::Application(ShippingOptionRepository &shippingRepo,
                          DiscountService &discountService,
-                         TransactionValidator &transactionValidator)
+                         TransactionValidator &transactionValidator,
+                         std::string inputFilePath)
         : shippingRepo(shippingRepo),
         discountService(discountService),
-        transactionValidator(transactionValidator) {}
+        transactionValidator(transactionValidator),
+        inputFilePath(std::move(inputFilePath)){}
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.
@@ -24,10 +27,7 @@ void Application::initialize() {
 }
 
 std::string Application::readInputFilePath() {
-    std::string path;
-    std::cout << "Enter the path to the input file:" << std::endl;
-    std::cin >> path;
-    return path;
+    return this->inputFilePath;
 }
 
 std::vector<std::string> Application::readInputFile(std::string &inputFilePath) {

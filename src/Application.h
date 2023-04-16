@@ -19,20 +19,19 @@ private:
     ShippingOptionRepository &shippingRepo;
     TransactionValidator &transactionValidator;
     DiscountService &discountService;
+    std::string inputFilePath;
 
     /**
-     * @brief Read input file path from user
+     * @brief Read input file path
      * @return input file path
      */
-    static std::string readInputFilePath();
+    std::string readInputFilePath();
 
     /**
      * @brief Read input file to vector of strings
      * @param inputFilePath file path
      * @return vector of lines
-     * @deprecated This method will not used anymore
      */
-     // todo: remove this method & move file path to arguments in main()
     static std::vector<std::string> readInputFile(std::string &inputFilePath);
 
     /**
@@ -71,7 +70,8 @@ public:
      */
     Application(ShippingOptionRepository &shippingRepo,
                 DiscountService &discountService,
-                TransactionValidator &transactionValidator);
+                TransactionValidator &transactionValidator,
+                std::string inputFilePath);
 
     /**
      * @brief Run the application
