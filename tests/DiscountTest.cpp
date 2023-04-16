@@ -5,6 +5,10 @@
 #include "shipping/shippingOption/ShippingOptionRepository.h"
 
 /**
+ * This is a test for the DiscountService class
+ */
+
+/**
  * @brief Mocks a transaction
  * @return mocked transaction
  */
