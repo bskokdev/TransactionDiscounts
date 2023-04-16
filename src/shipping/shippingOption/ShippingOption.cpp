@@ -1,10 +1,10 @@
 #include <iomanip>
 #include "ShippingOption.h"
 
-ShippingOption::ShippingOption() : empty(true) {}
+ShippingOption::ShippingOption() : empty(true), provider(Provider()), size(PackageSize()), price(0){}
 
 ShippingOption::ShippingOption(Provider provider, PackageSize size, double price)
-    : provider(provider), size(size), price(price) {}
+    : provider(provider), size(size), price(price), empty(false) {}
 
 Provider ShippingOption::getProvider() const {
     return provider;
