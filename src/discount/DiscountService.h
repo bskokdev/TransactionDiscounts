@@ -46,7 +46,6 @@ private:
      * @param discount discount to be applied
      */
     static void applyDiscountToAvailableAmount(MonthlyDiscountInfo &info, double &discount);
-
 public:
     /**
      * @brief Default constructor for DiscountService
