@@ -18,7 +18,6 @@ The discounts are applied to the transactions in the order they are provided in 
 5. Run CMake to generate the build files: `cmake ..` or `cmake -G "MinGW Makefiles" ..` (on Windows if using MinGW)
 6. Build the project: `make` or `cmake --build .`
 7. Run the tests: `ctest`
-8. Run the program: `./transaction_discounts` (or `./transaction_discounts.exe` on Windows)
 
 ## Running the Project
 
