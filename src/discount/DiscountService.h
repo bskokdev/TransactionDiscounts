@@ -30,7 +30,7 @@ private:
      * @param shippingOption Shipping option to calculate discount for
      * @return discount
      */
-    double calcDiscountForSmallPackage(ShippingOption &shippingOption) const;
+    double calcDiscountForPackage(ShippingOption &shippingOption) const;
 
     /**
      * Calculates discount for large package
@@ -38,7 +38,7 @@ private:
      * @param info Monthly discount info
      * @return discount
      */
-    static double calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
+    static double calcDiscountForPackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info);
 
     /**
      * @brief Applies discount to available amount

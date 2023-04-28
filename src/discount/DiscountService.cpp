@@ -39,15 +39,15 @@ void DiscountService::applyDiscountToAvailableAmount(MonthlyDiscountInfo &info, 
 double DiscountService::calcDiscountBasedOnSize(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
     switch (shippingOption.getSize()) {
         case PackageSize::S:
-            return this->calcDiscountForSmallPackage(shippingOption);
+            return this->calcDiscountForPackage(shippingOption);
         case PackageSize::L:
-            return calcDiscountForLargePackage(shippingOption, info);
+            return calcDiscountForPackage(shippingOption, info);
         default:
             return 0.0;
     }
 }
 
-double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOption) const {
+double DiscountService::calcDiscountForPackage(ShippingOption &shippingOption) const {
     if (shippingOption.getSize() == PackageSize::S) {
         if (shippingOption.getPrice() >= this->minSmallPackagePrice) {
             return shippingOption.getPrice() - this->minSmallPackagePrice;
@@ -56,7 +56,7 @@ double DiscountService::calcDiscountForSmallPackage(ShippingOption &shippingOpti
     return 0.0;
 }
 
-double DiscountService::calcDiscountForLargePackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
+double DiscountService::calcDiscountForPackage(ShippingOption &shippingOption, MonthlyDiscountInfo &info) {
     if (shippingOption.getSize() == PackageSize::L && info.getLargeLpPackagesCount() == 3) {
         return shippingOption.getPrice();
     }
