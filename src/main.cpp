@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <memory>
 
 int main(int argc, char *argv[]) {
     std::string inputFilePath = argv[1];
@@ -7,7 +8,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    ShippingOptionRepository shippingRepo;
+    // store the repository on the heap
+    std::unique_ptr<ShippingOptionRepository> shippingRepo = std::make_unique<ShippingOptionRepository>();
     DiscountService discountService(10);
     TransactionValidator transactionValidator;
 

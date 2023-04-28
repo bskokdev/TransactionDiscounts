@@ -6,6 +6,7 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 #include "io/Reader.h"
 #include "transaction/Transaction.h"
 #include "discount/DiscountService.h"
@@ -16,8 +17,8 @@
  */
 class Application {
 private:
-    ShippingOptionRepository &shippingRepo;
-    TransactionValidator &transactionValidator;
+    std::unique_ptr<ShippingOptionRepository> &shippingRepo;
+    IAttributeValidator &transactionValidator;
     DiscountService &discountService;
     std::string inputFilePath;
 
@@ -68,7 +69,7 @@ public:
      * @param shippingRepo ShippingOptionRepository instance
      * @param discountService DiscountService instance
      */
-    Application(ShippingOptionRepository &shippingRepo,
+    Application(std::unique_ptr<ShippingOptionRepository> &shippingRepo,
                 DiscountService &discountService,
                 TransactionValidator &transactionValidator,
                 std::string inputFilePath);

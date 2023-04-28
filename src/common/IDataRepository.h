@@ -8,6 +8,8 @@
  */
 template<typename T>
 class IDataRepository {
+protected:
+    int size;
 public:
     virtual ~IDataRepository() = default;
 

@@ -3,7 +3,7 @@
 #include "Application.h"
 #include "discount/DiscountService.h"
 
-Application::Application(ShippingOptionRepository &shippingRepo,
+Application::Application(std::unique_ptr<ShippingOptionRepository> &shippingRepo,
                          DiscountService &discountService,
                          TransactionValidator &transactionValidator,
                          std::string inputFilePath)
@@ -14,15 +14,15 @@ Application::Application(ShippingOptionRepository &shippingRepo,
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.
-    this->shippingRepo.add(ShippingOption(Provider::LP, PackageSize::S, 1.50));
-    this->shippingRepo.add(ShippingOption(Provider::LP, PackageSize::M, 4.90));
-    this->shippingRepo.add(ShippingOption(Provider::LP, PackageSize::L, 6.90));
+    this->shippingRepo->add(ShippingOption(Provider::LP, PackageSize::S, 1.50));
+    this->shippingRepo->add(ShippingOption(Provider::LP, PackageSize::M, 4.90));
+    this->shippingRepo->add(ShippingOption(Provider::LP, PackageSize::L, 6.90));
 
-    this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::S, 2.00));
-    this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::M, 3.00));
-    this->shippingRepo.add(ShippingOption(Provider::MR, PackageSize::L, 4.00));
+    this->shippingRepo->add(ShippingOption(Provider::MR, PackageSize::S, 2.00));
+    this->shippingRepo->add(ShippingOption(Provider::MR, PackageSize::M, 3.00));
+    this->shippingRepo->add(ShippingOption(Provider::MR, PackageSize::L, 4.00));
 
-    double minSmallPackagePrice = this->shippingRepo.findLowestPriceForSize(PackageSize::S);
+    double minSmallPackagePrice = this->shippingRepo->findLowestPriceForSize(PackageSize::S);
     this->discountService.setMinSmallPackagePrice(minSmallPackagePrice);
 }
 
@@ -54,7 +54,7 @@ Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
 
     std::string provider = transactionTokens[2];
     std::string packageSize = transactionTokens[1];
-    ShippingOption shippingOption = this->shippingRepo.findFromString(provider, packageSize);
+    ShippingOption shippingOption = this->shippingRepo->findFromString(provider, packageSize);
 
     Date date = Date::buildDateFromString(transactionTokens[0]);
 
