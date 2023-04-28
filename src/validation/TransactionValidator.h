@@ -2,24 +2,15 @@
 #define TRANSACTIONDISCOUNTS_TRANSACTIONVALIDATOR_H
 
 
-#include "transaction/ShippingTransaction.h"
+#include <string>
+#include <vector>
 #include "IAttributeValidator.h"
 
 /**
- * @brief Class representing the transaction validator
+ * @brief Class representing a validator for simple transactions
  * @details This class is used to validate format of transactions
  */
 class TransactionValidator : public IAttributeValidator {
-private:
-    /**
-     * @brief Checks if a string is a valid provider
-     * @tparam T Provider or PackageSize
-     * @param enumString provider string
-     * @details we take advantage of getProviderFromString throwing an exception if the string is invalid
-     * @return true if string is a valid provider
-     */
-    template<typename T>
-    static bool isEnumStringValid(const std::string &enumString);
 public:
     /**
      * @brief Default constructor for TransactionValidator
@@ -27,9 +18,12 @@ public:
     TransactionValidator() = default;
 
     /**
-     * @see IAttributeValidator::areValid
+     * @brief Checks if attributes in the vector are valid
+     * @param attributes vector of strings to validate attributes within
+     * @return true if the value is valid, false otherwise
+     * @see IAttributeValidator::areValidTypeAttributes
      */
-    bool areValid(std::vector<std::string> attributes) override;
+    bool areValidTypeAttributes(std::vector<std::string> attributes) override;
 };
 
 

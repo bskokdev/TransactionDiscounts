@@ -5,12 +5,12 @@
 
 Application::Application(std::unique_ptr<ShippingOptionRepository> &shippingRepo,
                          DiscountService &discountService,
-                         TransactionValidator &transactionValidator,
+                         IAttributeValidator &attributeValidator,
                          std::string inputFilePath)
         : shippingRepo(shippingRepo),
-        discountService(discountService),
-        transactionValidator(transactionValidator),
-        inputFilePath(std::move(inputFilePath)){}
+          discountService(discountService),
+          attributeValidator(attributeValidator),
+          inputFilePath(std::move(inputFilePath)){}
 
 void Application::initialize() {
     // this could be also read from a file / database / etc.
@@ -47,7 +47,7 @@ ShippingTransaction Application::buildTransactionFromUserInputLine(std::string &
     std::vector<std::string> transactionTokens = Reader::tokenize(line, ' ');
 
     // validation
-    if(!this->transactionValidator.areValid(transactionTokens)) {
+    if(!this->attributeValidator.areValidTypeAttributes(transactionTokens)) {
         handleInvalidTransactionInput(transactionTokens);
         return {};
     }

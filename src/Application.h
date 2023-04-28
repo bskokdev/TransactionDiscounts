@@ -10,7 +10,7 @@
 #include "io/Reader.h"
 #include "transaction/ShippingTransaction.h"
 #include "discount/DiscountService.h"
-#include "validation/TransactionValidator.h"
+#include "validation/ShippingTransactionValidator.h"
 
 /**
  * @brief Class representing the application
@@ -18,7 +18,7 @@
 class Application {
 private:
     std::unique_ptr<ShippingOptionRepository> &shippingRepo;
-    IAttributeValidator &transactionValidator;
+    IAttributeValidator &attributeValidator;
     DiscountService &discountService;
     std::string inputFilePath;
 
@@ -71,7 +71,7 @@ public:
      */
     Application(std::unique_ptr<ShippingOptionRepository> &shippingRepo,
                 DiscountService &discountService,
-                TransactionValidator &transactionValidator,
+                IAttributeValidator &attributeValidator,
                 std::string inputFilePath);
 
     /**

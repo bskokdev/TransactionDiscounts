@@ -11,9 +11,9 @@ int main(int argc, char *argv[]) {
     // store the repository on the heap
     std::unique_ptr<ShippingOptionRepository> shippingRepo = std::make_unique<ShippingOptionRepository>();
     DiscountService discountService(10);
-    TransactionValidator transactionValidator;
+    ShippingTransactionValidator shippingTransactionValidator;
 
-    Application app(shippingRepo, discountService, transactionValidator, inputFilePath);
+    Application app(shippingRepo, discountService, shippingTransactionValidator, inputFilePath);
     app.run();
     return 0;
 }
