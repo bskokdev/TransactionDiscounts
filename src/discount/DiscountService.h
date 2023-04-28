@@ -6,7 +6,7 @@
 #include <iostream>
 #include "../shipping/shippingOption/ShippingOption.h"
 #include "MonthlyDiscountInfo.h"
-#include "../transaction/Transaction.h"
+#include "transaction/ShippingTransaction.h"
 
 /**
  * @brief Class representing a service for discounts
@@ -63,14 +63,14 @@ public:
      * @param transaction Transaction to calculate discount for
      * @return discount
      */
-    double calcDiscountForTransaction(Transaction &transaction);
+    double calcDiscountForTransaction(ShippingTransaction &transaction);
 
     /**
      * @brief Applies discount to transaction
      * @param transaction Transaction to apply discount to
      * @param discount discount to be applied
      */
-    static void applyDiscountToTransaction(Transaction &transaction, double discount);
+    static void applyDiscountToTransaction(ShippingTransaction &transaction, double discount);
 
     // getters and setters
     void setMinSmallPackagePrice(double minSmallPackagePrice);

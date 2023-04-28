@@ -42,7 +42,7 @@ void handleInvalidTransactionInput(const std::vector<std::string>& lineTokens) {
     std::cout << "Ignored" << std::endl;
 }
 
-Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
+ShippingTransaction Application::buildTransactionFromUserInputLine(std::string &line) {
     // split the line into tokens (date, provider, package size)
     std::vector<std::string> transactionTokens = Reader::tokenize(line, ' ');
 
@@ -62,14 +62,14 @@ Transaction Application::buildTransactionFromUserInputLine(std::string &line) {
     return {date, shippingOption};
 }
 
-double Application::applyDiscount(Transaction &transaction) {
+double Application::applyDiscount(ShippingTransaction &transaction) {
     double discount = this->discountService.calcDiscountForTransaction(transaction);
     DiscountService::applyDiscountToTransaction(transaction, discount);
 
     return discount;
 }
 
-void Application::printTransactionAndDiscount(Transaction &transaction, double discount) {
+void Application::printTransactionAndDiscount(ShippingTransaction &transaction, double discount) {
     std::cout << transaction;
     // print the discount with 2 decimal places or "-" if the discount is 0
     std::stringstream ss;
@@ -91,7 +91,7 @@ void Application::run() {
     std::vector<std::string> lines = this->readInputFile(path);
 
     for (auto &line: lines) {
-        Transaction transaction = buildTransactionFromUserInputLine(line);
+        ShippingTransaction transaction = buildTransactionFromUserInputLine(line);
         // if the transaction is invalid, skip it
         if(!transaction.isEmpty()) {
             double discount = applyDiscount(transaction);

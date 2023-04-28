@@ -5,7 +5,7 @@ DiscountService::DiscountService(double maxMonthlyDiscount) : maxMonthlyDiscount
     this->minSmallPackagePrice = INT_MAX;
 }
 
-double DiscountService::calcDiscountForTransaction(Transaction &transaction) {
+double DiscountService::calcDiscountForTransaction(ShippingTransaction &transaction) {
     std::string currentMonth = transaction.getDate().getMonthYear();
 
     // If the month is not in the map, create a new MonthlyDiscountInfo for that month
@@ -63,7 +63,7 @@ double DiscountService::calcDiscountForPackage(ShippingOption &shippingOption, M
     return 0.0;
 }
 
-void DiscountService::applyDiscountToTransaction(Transaction &transaction, double discount) {
+void DiscountService::applyDiscountToTransaction(ShippingTransaction &transaction, double discount) {
     transaction.updateShippingPrice(transaction.getShippingOption().getPrice() - discount);
 }
 

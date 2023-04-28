@@ -2,7 +2,7 @@
 #define TRANSACTIONDISCOUNTS_TRANSACTIONVALIDATOR_H
 
 
-#include "../transaction/Transaction.h"
+#include "transaction/ShippingTransaction.h"
 #include "IAttributeValidator.h"
 
 /**

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <memory>
 #include "io/Reader.h"
-#include "transaction/Transaction.h"
+#include "transaction/ShippingTransaction.h"
 #include "discount/DiscountService.h"
 #include "validation/TransactionValidator.h"
 
@@ -41,21 +41,21 @@ private:
      * @details has a side-effect of printing the invalid input line
      * @return Transaction object
      */
-    Transaction buildTransactionFromUserInputLine(std::string &line);
+    ShippingTransaction buildTransactionFromUserInputLine(std::string &line);
 
     /**
      * @brief Apply discount on the transaction and return the discount
      * @param transaction Transaction object
      * @return discount
      */
-    double applyDiscount(Transaction &transaction);
+    double applyDiscount(ShippingTransaction &transaction);
 
     /**
      * @brief Print the transaction and discount
      * @param transaction Transaction object
      * @param discount discount
      */
-    static void printTransactionAndDiscount(Transaction &transaction, double discount);
+    static void printTransactionAndDiscount(ShippingTransaction &transaction, double discount);
 
 public:
     /**

@@ -1,4 +1,4 @@
-# Transaction Discounts Module
+# ShippingTransaction Discounts Module
 
 This C++ module allows you to apply discounts to transactions provided in the input file.
 The discounts are applied in the order they are provided in the input file.

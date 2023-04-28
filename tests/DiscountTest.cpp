@@ -12,7 +12,7 @@
  * @brief Mocks a transaction
  * @return mocked transaction
  */
-Transaction mockTransaction(PackageSize size, double price, Provider provider) {
+ShippingTransaction mockTransaction(PackageSize size, double price, Provider provider) {
     Date date = Date(1, 1, 2020);
 
     ShippingOption shippingOption(provider, size, price);
@@ -46,11 +46,11 @@ DiscountService mockDiscountService() {
 
 TEST(DiscountTest, CalculateDiscountForTransaction) {
     DiscountService discountService = mockDiscountService();
-    Transaction t1 = mockTransaction(PackageSize::L, 6.90, Provider::LP);
-    Transaction t2 = mockTransaction(PackageSize::L, 6.90, Provider::LP);
-    Transaction t3 = mockTransaction(PackageSize::L, 6.90, Provider::LP);
-    Transaction t4 = mockTransaction(PackageSize::S, 4.00, Provider::LP);
-    Transaction t5 = mockTransaction(PackageSize::S, 4.00, Provider::LP);
+    ShippingTransaction t1 = mockTransaction(PackageSize::L, 6.90, Provider::LP);
+    ShippingTransaction t2 = mockTransaction(PackageSize::L, 6.90, Provider::LP);
+    ShippingTransaction t3 = mockTransaction(PackageSize::L, 6.90, Provider::LP);
+    ShippingTransaction t4 = mockTransaction(PackageSize::S, 4.00, Provider::LP);
+    ShippingTransaction t5 = mockTransaction(PackageSize::S, 4.00, Provider::LP);
 
     double discount1 = discountService.calcDiscountForTransaction(t1);
     double discount2 = discountService.calcDiscountForTransaction(t2);
@@ -75,7 +75,7 @@ TEST(DiscountTest, CalculateDiscountForTransaction) {
 
 TEST(DiscountTest, ApplyDiscountToTransaction) {
     DiscountService discountService;
-    Transaction transaction = mockTransaction(PackageSize::S, 10.0, Provider::LP);
+    ShippingTransaction transaction = mockTransaction(PackageSize::S, 10.0, Provider::LP);
 
     double discount = 8.2;
     DiscountService::applyDiscountToTransaction(transaction, discount);
