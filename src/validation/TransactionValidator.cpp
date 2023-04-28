@@ -3,24 +3,23 @@
 bool TransactionValidator::areValid(std::vector<std::string> attributes) {
     if(attributes.size() != 3) return false;
     if(!Date::isStringValidDate(attributes[0])) return false;
-    if(!isPackageSizeStringValid(attributes[1])) return false;
-    if(!isProviderStringValid(attributes[2])) return false;
+    if(!isEnumStringValid<PackageSize>(attributes[1])) return false;
+    if(!isEnumStringValid<Provider>(attributes[2])) return false;
 
     return true;
 }
 
-bool TransactionValidator::isProviderStringValid(const std::string &provider) {
+template <typename T>
+bool TransactionValidator::isEnumStringValid(const std::string &enumString) {
+    if (enumString.empty()) return false;
+    // We use std::is_same to check if T is Provider or PackageSize
     try {
-        getProviderFromString(provider);
-        return true;
-    } catch (const std::invalid_argument &) {
-        return false;
-    }
-}
-
-bool TransactionValidator::isPackageSizeStringValid(const std::string &packageSize) {
-    try {
-        getPackageSizeFromString(packageSize);
+        if(std::is_same<T, Provider>::value) {
+            getProviderFromString(enumString);
+        } else if(std::is_same<T, PackageSize>::value) {
+            getPackageSizeFromString(enumString);
+        }
+        // No exception was thrown, so the string is valid
         return true;
     } catch (const std::invalid_argument &) {
         return false;
