@@ -11,9 +11,6 @@
  */
 class TransactionValidator : public IAttributeValidator {
 private:
-    // These validations could be moved to separate validators (deriving from IAttributeValidator)
-    // I decided to keep them here for simplicity and because they are not used anywhere else
-
     /**
      * @brief Checks if a string is a valid provider
      * @tparam T Provider or PackageSize

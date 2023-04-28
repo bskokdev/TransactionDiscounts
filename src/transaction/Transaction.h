@@ -3,7 +3,9 @@
 
 
 #include "common/Date.h"
-
+/**
+ * @brief Class representing a transaction in the system (abstract)
+ */
 class Transaction {
 protected:
     Date date;
