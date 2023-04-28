@@ -14,12 +14,12 @@ private:
     /**
      * @brief Checks if a string is a valid provider
      * @tparam T Provider or PackageSize
-     * @param provider provider string
+     * @param enumString provider string
      * @details we take advantage of getProviderFromString throwing an exception if the string is invalid
      * @return true if string is a valid provider
      */
     template<typename T>
-    static bool isEnumStringValid(const std::string &provider);
+    static bool isEnumStringValid(const std::string &enumString);
 public:
     /**
      * @brief Default constructor for TransactionValidator
